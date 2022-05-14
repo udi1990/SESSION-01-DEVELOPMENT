@@ -13,7 +13,7 @@ pipeline {
         stage('build image') {
             steps {
                 sh '''
-                docker build -t nigieu:001
+                docker build -t nigieu:001 .
                 '''
             }
         }
