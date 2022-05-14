@@ -14,8 +14,8 @@ pipeline {
         stage('Hello2') {
             steps {
                 sh '''
-                touch ok1 || true
-                ls
+                mkdir ok2 || true
+                cd ok2
                 '''
             }
         }
@@ -23,8 +23,8 @@ pipeline {
         stage('Hello3') {
             steps {
                 sh '''
-                mkdir ok2 || true
-                cd ok2
+                touch ok1 || true
+                ls
                 '''
             }
         }
