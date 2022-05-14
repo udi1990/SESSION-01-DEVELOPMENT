@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                 echo"hey man"
+            }
+        }
+
+
+ 
+        stage('Hello2') {
+            steps {
+                sh '''
+                touch ousmane omar soda cheikh
+                '''
+            }
+        }
+
+
+ 
+        stage('Hello3') {
+            steps {
+               echo"hey man"
+            }
+        }
+
+
+        stage('Hello4') {
+            steps {
+                 echo"hey man"
+            }
+        }
+
+
+
+    }
+
+
+
+}
