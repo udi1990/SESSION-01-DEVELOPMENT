@@ -2,32 +2,29 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('cleaning environment') {
             steps {
                 sh '''
                 ls
-                pwd
                 '''
             }
         }
 
 
 
-        stage('hi') {
+        stage('build the image') {
             steps {
                 sh '''
-                mkdir kel
-                touch file1
+                docker built -t kelly:001
 
                 '''
             }
         }
 
-        stage('bye bye') {
+        stage('checking images') {
             steps {
                 sh '''
-                touch fil2
-                touch file3
+               docker images
 
                 '''
             }
