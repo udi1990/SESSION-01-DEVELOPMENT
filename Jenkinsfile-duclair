@@ -3,21 +3,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('cleaning') {
             steps {
                sh'''
-               ls
-               pwd
+               docker build -t duclair:001 .
                '''
             }
         }
-  stage('Hello1') {
+  stage('checking images') {
             steps {
                sh'''
-               free -h      
+               docker images
                '''
             }
         }
+
+
+
+
 
     }
 
