@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello1') {
+            steps {
+            sh '''
+            touch lucy paul
+            }
+        }
+    }
+}
