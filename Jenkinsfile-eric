@@ -3,37 +3,37 @@ pipeline {
 
     stages {
 
-        stage('Hello1') {
+        stage('cleaning enviroment') {
             steps {
                 sh '''
-                ls 
-                pwd
+               docker rm -f $(docker ps -aq)
+               
                 '''
             }
         }
     
     
     
-    stage('Hello2') {
+    stage('build the image') {
             steps {
                 sh '''
-              free -h
+              docker build -t eric:001 . 
                 '''
             }
         }
     
-    stage('Hello3') {
+    stage('checking images') {
             steps {
                 sh '''
-           uname -r
+            docker images
                 '''
             }
         }
     
-    stage('Hello4') {
+    stage('launch container') {
             steps {
                 sh '''
-            touch eric ryann odilia 
+            docker run -i --name eric eric:001
                 '''
             }
         }
