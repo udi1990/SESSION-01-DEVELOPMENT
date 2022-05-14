@@ -1,0 +1,68 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                sh '''
+                ls
+                pwd
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh '''
+                free -h
+                '''
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                uname -r
+                '''
+            }
+        }
+
+        stage('Ship') {
+            steps {
+                sh '''
+                touch jenkinsfile
+                '''
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
