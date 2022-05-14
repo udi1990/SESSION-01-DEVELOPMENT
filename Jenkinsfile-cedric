@@ -3,37 +3,35 @@ pipeline {
 
     stages {
 
-        stage('Hello1') {
+        stage('cleaning environment') {
             steps {
                 sh '''
-                ls 
-                pwd
+                docker rm -f $(docker ps -aq) || true
+            
                 '''
             }
         }
     
-        stage('Hello2') {
+        stage('build image') {
             steps {
               sh '''
-               touch cedric vanelle
-               uname -r
+                docker build -t cedric:001 .
               '''
             }
         }
 
-        stage('Hello3') {
+        stage('checking images') {
             steps {
                 sh '''
-                mkdir cedric-devops
+                docker images
                 '''
             }
         }
 
-        stage('Hello4') {
+        stage('launch container') {
             steps {
                 sh '''
-                echo "I love Devops"
-                
+                docker run -i --name cedric cedric:001
                 '''
             }
         }
