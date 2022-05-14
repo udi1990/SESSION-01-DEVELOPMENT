@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Hello1') {
+            steps {
+                sh '''
+                touch pipeline
+                '''
+            }
+        }
+
+        stage('Hello') {
+            steps {
+                sh '''
+                mkdir valdes
+                '''
+            }
+        }
+    }
+    
+
+}
