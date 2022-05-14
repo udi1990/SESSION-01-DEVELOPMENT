@@ -8,39 +8,16 @@ pipeline {
                sh'''
                ls
                pwd
-
                '''
             }
         }
   stage('Hello1') {
             steps {
                sh'''
-               free -h
-               
+               free -h      
                '''
             }
         }
-
-stage('Hello2') {
-            steps {
-             sh'''
-             uname -a
-
-               '''
-            }
-        }
-
-
-stage('Hello3') {
-            steps {
-                sh'''
-                pwd
-
-               '''
-            }
-        }
-
-
 
     }
 
