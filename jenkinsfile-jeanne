@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                sh '''
+                uname -r
+                '''
+            }
+        }
+
+    stage('Salut') {
+            steps {
+                 sh '''
+                 mkdir jeanne
+                '''
+            }
+        }
+
+        stage('Holla') {
+            steps {
+                 sh '''
+                 touch josh
+                '''
+            }
+        }
+
+        stage('Bonjour') {
+            steps {
+                 sh '''
+                 pwd
+                '''
+            }
+        }
+    }
+}
