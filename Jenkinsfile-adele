@@ -6,8 +6,7 @@ pipeline {
             steps {
                 sh '''
                 
-                docker build -t adele:001
-                docker images
+                 docker -version
                     
                 '''
             }
