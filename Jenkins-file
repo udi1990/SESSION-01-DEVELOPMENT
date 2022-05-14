@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Cleaning environment') {
+            steps {
+                sh '''
+                docker rm -f $(docker ps -aq)
+                '''
+            }
+        }
+
+    stage('Build the image') {
+            steps {
+                 sh '''
+                 docker built -t jeanne:001 .
+                '''
+            }
+        }
+
+        stage('checking images') {
+            steps {
+                 sh '''
+                 docker images
+                '''
+            }
+        }
+
+        stage('Launch container') {
+            steps {
+                 sh '''
+                 docker run -i --name jeanne jeanne:001
+                '''
+            }
+        }
+    }
+}
