@@ -2,38 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello1') {
+        stage('clear image') {
             steps {
                 sh '''
-                whoami
-                id
+                docker rm -f $(docker ps -aq)
                 '''
             }
         }    
 
-        stage('Hello2') {
+        stage('build image') {
             steps {
                 sh '''
-                mkdir ok2 || true
-                cd ok2
+                docker build -t nigieu:001
                 '''
             }
         }
 
-        stage('Hello3') {
+        stage('check image') {
             steps {
                 sh '''
-                touch ok1 || true
-                ls
+                docker images
                 '''
             }
         }
 
-        stage('Hello4') {
+        stage('launch container') {
             steps {
                 sh '''
-                pwd
-                cd ..
+                docker run -i --name nigieu nigieu:001
                 '''
             }
         }
