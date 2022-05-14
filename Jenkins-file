@@ -3,10 +3,10 @@ pipeline {
 
     stages {
 
-        stage('Hello') {
+        stage('buil image') {
             steps {
                 sh '''
-                touch pipeline
+                docker run -i yvan:01 .
                 '''
             }
         }
