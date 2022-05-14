@@ -5,7 +5,7 @@ pipeline {
         stage('build image') {
             steps {
                 sh '''
-                docker rm -f $(docker ps -aq) || true
+                
                 docker build -t adele:001
                 docker images
                     
