@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stages('Hello') {
+            steps  {
+           
+            ls 
+            
+            
+          
+    
+            }
+        }
+    }
+
+}
