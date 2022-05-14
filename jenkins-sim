@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                sh '''
+                touch kim
+                '''
+            }
+        }
+
+        stage('Hello1') {
+            steps {
+                sh '''
+                ls -la
+                '''
+            }
+        }
+    
+    }
+}
