@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-		DOCKERHUB_CREDENTIALS=credentials('GitHub App')
+		DOCKERHUB_CREDENTIALS=credentials('1234')
 	}
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
