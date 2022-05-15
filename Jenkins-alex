@@ -1,5 +1,11 @@
 pipeline {
     agent any
+
+environment {
+        Username: devopseasylearning2021
+        Password: DevOps2021@
+    }
+
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
@@ -10,30 +16,43 @@ pipeline {
      
 
 
-     stage('Hello1') {
+     stage('build images') {
             steps {
                 sh '''
-                uname -r
-                
+                docker build -t alex:001 .
+        
                 '''
             }
         }
 
 
-     stage('Hello2') {
+     stage('tag image') {
             steps {
                sh '''
-              ls -l 
-              nproc 
+              docker tag alex: devopseasylearning2021/alex:001
                 '''
             }
         }
 
+    stage('docker login') {
+            steps {
+               sh '''
+              docker login -u $username -p $password
+                '''
+            }
+        }
+
+
+     stage('docker push') {
+            steps {
+               sh '''
+              docker push devopseasylearning2021/alex:001
+                '''
+            }
+        }
+     
+
     }
-
-
-
-
 
 
 }
