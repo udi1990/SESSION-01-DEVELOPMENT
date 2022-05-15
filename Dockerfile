@@ -3,8 +3,9 @@ pipeline {
 
      environment {
          USERNAME = 'devopseasylearning2021'
-         PASSWORD = 'DevOps2021@'
+         
      }
+
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
@@ -12,10 +13,13 @@ pipeline {
 
 
     stages {
+
+
+
         stage('Build images') {
             steps {
                 sh '''
-               docker build -t igor:001 .
+               docker build -t eric:001 .
 
                 '''
             }
@@ -24,7 +28,7 @@ pipeline {
         stage('Tag image') {
             steps {
                 sh '''
-                docker tag igor:001 devopseasylearning2021/igor:001
+                docker tag igor:001  devopseasylearning2021/igor:001
 
                 '''
             }
