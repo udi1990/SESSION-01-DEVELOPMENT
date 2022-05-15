@@ -11,10 +11,10 @@ pipeline {
                 '''    
             }
         }
-    }
+    
 
 
-stages {
+
         stage('Hello1') {
             steps {
                 sh '''
@@ -23,8 +23,8 @@ stages {
                 '''
             }
         }
-    }
-stages {
+    
+
         stage('Hello2') {
             steps {
                sh '''
@@ -32,7 +32,7 @@ stages {
                 '''
             }
         }
-    }
+    
 
 
 
@@ -40,6 +40,14 @@ stages {
 
 
 }
+
+
+
+
+
+
+
+
 
 
 
