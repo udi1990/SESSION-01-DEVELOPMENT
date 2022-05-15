@@ -12,7 +12,7 @@ pipeline {
             }
 
         }
-        stage('Hello2') {
+        stage('build') {
             steps {
                 sh '''
                 ls 
@@ -22,7 +22,7 @@ pipeline {
             }
 
         }
-        stage('Hello3') {
+        stage('deploy') {
             steps {
                 sh '''
                 ls 
