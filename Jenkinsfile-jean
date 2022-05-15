@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    properties([disableConcurrentBuilds(), buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))])
+
+
     stages {
         stage('Hello') {
             steps {
@@ -38,7 +41,7 @@ stage('Hello3') {
                 sh '''
                 uname
                 ls -l
-                echo "I love DevOps"
+                echo " I love DevOps"
                 ''' 
             }
         }
