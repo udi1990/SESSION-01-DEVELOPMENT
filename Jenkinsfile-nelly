@@ -3,9 +3,9 @@ pipeline {
     options {buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
     artifactNumToKeepStr: '', 
     daysToKeepStr: '3', 
-    numToKeepStr: '5')), 
+    numToKeepStr: '5'))
     disableConcurrentBuilds()}
-    
+
     stages {
         stage('Hello') {
             steps {
