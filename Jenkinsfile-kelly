@@ -36,7 +36,7 @@ options {
         stage('docker login') {
             steps {
                 sh '''
-                docker login -u $USERNAME -p $PASSWORD
+                docker login -u $Username -p $Password
                '''
             }
         }
