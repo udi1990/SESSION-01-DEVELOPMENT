@@ -4,38 +4,50 @@ options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
 
+ environment {
+        Username: 'devopseasylearning2021'
+        Password:  'DevOps2021@'
+
+    }
+
     stages {
 
 
 
-        stage('Hello') {
+        stage('build images') {
             steps {
                sh '''
-                ls
-                pwd
-                touch kelly vincy 
-                mkdir anita
-
+               docker build -t kelly:001 .
                '''
             }
         }
 
 
-        stage('Hello1') {
+        stage('Tag image') {
             steps {
                 sh '''
-                uname -r
+               docker tag kelly:001 devopseasylearning2021/kelly:001
                '''
             }
         }
 
 
 
-        stage('Hello2') {
+        stage('docker login') {
             steps {
                 sh '''
-                nproc
-                cat /etc/*release
+                docker login -u $USERNAME -P $PASSWORD
+               '''
+            }
+        }
+
+
+
+
+        stage('docker push') {
+            steps {
+                sh '''
+               docker push devopseasylearning2021/kelly:001
                '''
             }
         }
