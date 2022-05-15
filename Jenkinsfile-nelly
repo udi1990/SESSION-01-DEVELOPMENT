@@ -1,9 +1,10 @@
 pipeline {
     agent any
-       environment {
+
+    environment {
         username = 'devopeasylearning2021'
-        password = 'DevOps2021@'
     }
+
     options {buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
     artifactNumToKeepStr: '', 
     daysToKeepStr: '3', 
@@ -14,30 +15,33 @@ pipeline {
     stages {
         stage('build images') {
             steps {
-                    sh'''
-                    docker build -t nelly:001.
-                    '''
+                sh'''
+                docker build -t nelly:001.
+                '''
             }
         }
-        stage('Tag images') {
-            steps {
-                    sh'''
-                    docker tag nelly:001 devopseasylearning2021/nelly:001
-                    '''
-            }
-        }
-        stage('Docker login') {
+        stage('Tag image') {
             steps {
                 sh'''
-                    docker login -u $username -p $password 
-                    '''
+                docker tag nelly:001 devopseasylearning2021/nelly:001
+                '''
             }
         }
+       stage('Docker login ') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
+                sh '''
+                echo "${password} | docker login -u ${username} --password-stdin"
+                '''
+                }
+            }
+        }
+
         stage('Docker push') {
             steps {
                 sh'''
-                    docker push devopseasylearning2021/nelly:001
-                    '''
+                docker push devopseasylearning2021/nelly:001
+                '''
             }
         }
     }
