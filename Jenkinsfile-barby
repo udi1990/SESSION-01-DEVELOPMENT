@@ -2,40 +2,44 @@ pipeline {
     agent any
 
      environment {
-        DISABLE_AUTH = 'devopseasylearning2021'
-        DB_ENGINE    = 'DevOps2021@'
+        USERNAME='devopseasylearning2021'
+        PASSWORD='DevOps2021@'
     }
 
    options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
     stages {
-        stage('Hello') {
+        stage('Build image') {
             steps {
                 sh '''
-                ls 
-                pwd           
+                docker build -t barbara:001 .          
                 '''
             }
         }
     
-        stage('Hello1') {
+        stage('Tag image') {
             steps {
                 sh '''
-                touch tom 
-                mkdir bob                
+                docker tag barbara:001 devopseasylearning2021/barbara:001                
                 '''
             }
         }
-     stage('Hello2') {
+     stage('Docker login ') {
             steps {
                 sh '''
-                nproc 
-                free -h
+                docker login -u $USERNAME -p $PASSWORD
                 '''
             }
         }
         
+        stage('Docker push ') {
+            steps {
+                sh '''
+                docker push devopseasylearning2021/barbara:001
+                '''
+            }
+        }
     }
 
 
