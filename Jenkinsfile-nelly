@@ -15,7 +15,7 @@ pipeline {
         stage('build images') {
             steps {
                     sh'''
-                    docker build -t nelly:001.
+                    docker build -t nelly:001 .
                     '''
             }
         }
