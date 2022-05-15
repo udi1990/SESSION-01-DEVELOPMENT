@@ -3,7 +3,7 @@ pipeline {
     
     environment {
     Username: devopseasylearning2021
-    Password:  DevOps2021@
+    Password: DevOps2021@
     }
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
