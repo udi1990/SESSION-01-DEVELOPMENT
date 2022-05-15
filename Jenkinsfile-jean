@@ -19,7 +19,7 @@ environment {
      stage('Build images') {
             steps {
                 sh '''
-                docker build -t jean:001
+                docker build -t jean:001 .
                 
                 '''
             }
