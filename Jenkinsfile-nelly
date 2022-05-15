@@ -26,6 +26,7 @@ pipeline {
             steps {
                 sh '''
                 echo 'Hello World2'
+                rm -rf groovy-test
                 mkdir groovy-test
                 cd groovy-test
                 touch test1 test2
