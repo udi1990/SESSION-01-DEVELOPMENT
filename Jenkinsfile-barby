@@ -1,5 +1,11 @@
 pipeline {
     agent any
+
+     environment {
+        DISABLE_AUTH = 'devopseasylearning2021'
+        DB_ENGINE    = 'DevOps2021@'
+    }
+
    options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
