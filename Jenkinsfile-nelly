@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        username='devopseasylearning2021'
-    }
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
 
     options {buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
     artifactNumToKeepStr: '', 
@@ -27,15 +28,13 @@ pipeline {
                 '''
             }
         }
-       stage('Docker login ') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
-                sh '''
-                echo "${password} | docker login -u ${username} --password-stdin"
-                '''
-                }
-            }
-        }
+       stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
 
         stage('Docker push') {
             steps {
