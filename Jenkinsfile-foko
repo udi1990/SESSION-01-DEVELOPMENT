@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+		DOCKERHUB_CREDENTIALS=credentials('Dockerhub')
 	}
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
@@ -18,7 +18,7 @@ pipeline {
      stage('Build images') {
             steps {
                 sh '''
-                docker build -t eric:001 .
+                docker build -t jeanne:001 .
                 
                 '''
             }
@@ -28,7 +28,7 @@ pipeline {
      stage('Tag image ') {
             steps {
                sh '''
-              docker tag eric:001  devopseasylearning2021/eric:001 
+              docker tag jeanne:001  devopseasylearning2021/eric:001 
                 '''
             }
         }
