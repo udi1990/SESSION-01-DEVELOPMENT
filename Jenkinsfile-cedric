@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    //Setting the environment variables USERNAME and PASSWORD
+   //Setting the environment variables USERNAME and PASSWORD
     environment {
        USERNAME = 'devopseasylearning2021'
        PASSWORD = 'DevOps2021@'
@@ -31,8 +31,6 @@ pipeline {
                 '''
             }
         }
-
-
 
 
         stage('docker login') {
