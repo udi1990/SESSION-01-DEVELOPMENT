@@ -1,7 +1,12 @@
 pipeline {
 
     agent any
-    properties([disableConcurrentBuilds(), buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))])
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
+
+  }
+
 
     stages {
         stage('Hello') {
