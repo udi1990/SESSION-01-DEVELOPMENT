@@ -17,21 +17,21 @@ pipeline {
                 '''
             }
         }
-        stage('docker image') {
+        stage('Tag image') {
             steps {
                 sh '''
                 docker tag simplice:001 devopseasylearning2021/simplice:001
                 '''
             }
         }
-        stage('docker loging') {
+        stage('Docker login') {
             steps {
                 sh '''
                 docker login -u $USERNAME -p $PASSWORD
                 '''
             }
         }
-        stage('docker push') {
+        stage('Docker push') {
             steps {
                 sh '''
                 docker push devopseasylearning2021/simplice:001
