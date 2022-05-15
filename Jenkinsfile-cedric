@@ -1,56 +1,81 @@
 pipeline {
     agent any
 
-   environment {
+    environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 	}
 
-   options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
-
-
+      
+      
     stages {
+     
+     
 
-        stage('build images') {
+
+     stage('Build images') {
             steps {
                 sh '''
-                docker build -t cedric:001 .
-                '''
-            }
-        }
-
-    
-        stage('tag images') {
-            steps {
-                sh '''
-                docker tag cedric:001 devopseasylearning2021/cedric_0314:001
+                docker build -t eric:001 .
+                
                 '''
             }
         }
 
 
-        stage('Login') {
+     stage('Tag image ') {
+            steps {
+               sh '''
+              docker tag eric:001  devopseasylearning2021/eric:001 
+                '''
+            }
+        }
+
+
+
+      stage('Docker Login') {
 
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
+           
+            
 
-
-
-
-        stage('docker push') {
+     stage('Docker push ') {
             steps {
-                sh '''
-                docker push devopseasylearning2021/cedric_0314:001
+               sh '''
+              docker push devopseasylearning2021/eric:001 
                 '''
             }
         }
 
 
 
-        
+post {
+   
+   success {
+      slackSend (channel: '#development-alerts', color: 'good', message: "SUCCESSFUL:  Branch name  <<${env.BRANCH_NAME}>>  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+
+ 
+    unstable {
+      slackSend (channel: '#development-alerts', color: 'warning', message: "UNSTABLE:  Branch name  <<${env.BRANCH_NAME}>>  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+
+    failure {
+      slackSend (channel: '#development-alerts', color: '#FF0000', message: "FAILURE:  Branch name  <<${env.BRANCH_NAME}>> Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+   
+    cleanup {
+      deleteDir()
     }
 }
+
+
+
+
+    }
