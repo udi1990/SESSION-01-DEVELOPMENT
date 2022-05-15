@@ -2,7 +2,7 @@ pipeline {
     agent any
        environment {
         username = 'devopeasylearning2021'
-        password = 'devOps2021@'
+        password = 'DevOps2021@'
     }
     options {buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
     artifactNumToKeepStr: '', 
@@ -15,7 +15,7 @@ pipeline {
         stage('build images') {
             steps {
                     sh'''
-                    docker build -t nelly:001 .
+                    docker build -t nelly:001.
                     '''
             }
         }
