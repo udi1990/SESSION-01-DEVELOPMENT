@@ -1,5 +1,12 @@
 pipeline {
+
     agent any
+    
+     environment {
+        DISABLE_AUTH = 'devopseasylearning2021'
+        DB_ENGINE    = 'sDevOps2021@'
+     }
+    
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
@@ -37,3 +44,7 @@ pipeline {
 
 
 }
+
+
+}
+
