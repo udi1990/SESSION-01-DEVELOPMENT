@@ -26,13 +26,13 @@ pipeline {
             }
         }
 
-        stage('launch container') {
-            steps {
-                sh '''
-                docker run -i --name nigieu nigieu:001
-                '''
-            }
-        }
+      #  stage('launch container') {
+     #       steps {
+    #            sh '''
+   #             docker run -i --name nigieu nigieu:001
+  #              '''
+ #           }
+#        }
     }
 }
 
