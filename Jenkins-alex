@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-environment {
+    environment {
         username = 'devopseasylearning2021'
         password = 'DevOps2021'
     
@@ -21,7 +21,6 @@ environment {
             steps {
                 sh '''
                 docker build -t alex:001 .
-        
                 '''
             }
         }
@@ -30,7 +29,7 @@ environment {
      stage('tag image') {
             steps {
                sh '''
-              docker tag alex: devopseasylearning2021/alex:001
+              docker tag alex:001 devopseasylearning2021/alex:001
                 '''
             }
         }
