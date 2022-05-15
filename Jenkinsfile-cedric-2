@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds(abortPrevious: true)])
 
     stages {
         stage('cedric1') {
@@ -12,32 +13,7 @@ pipeline {
             }
         }
     
-        stage('cedric2') {
-            steps {
-                sh '''
-                uname -a
-                mkdir paul-biya
-                '''
-            }
-        }
     
-        stage('cedric3') {
-            steps {
-                sh '''
-                ls
-                uname -r
-                '''
-            }
-        }
-    
-        stage('cedric4') {
-            steps {
-                sh '''
-                ls
-                pwd
-                '''
-            }
-        }
-    
+
     }
 }
