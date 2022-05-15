@@ -4,13 +4,14 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
   environment { 
-  Username: devopseasylearning2021
-  Password:  DevOps2021@
+  USERNAME: devopseasylearning2021
+  PASSWORD:  DevOps2021@
   }
     stages {
-        stage('Hello1') {
+        stage('build image') {
             steps {
                 sh '''
+                docker build -t bernis2010 .
                 ls 
                 pwd
                 touch douala
@@ -18,9 +19,10 @@ pipeline {
             }
 
         }
-        stage('Hello2') {
+        stage('tag image') {
             steps {
                 sh '''
+                docker tag bernis2010:1 devopseasylearning2021/bernis2010:1
                 ls 
                 pwd
                 touch douala
@@ -28,10 +30,21 @@ pipeline {
             }
 
         }
-        stage('Hello3') {
+        stage('docker loging ') {
             steps {
                 sh '''
+                docker loging -u $USERNAME -p PASSWORD
                 ls 
+                pwd
+                touch douala
+                '''
+            }
+
+        }
+         stage('docker PUSH ') {
+            steps {
+                sh '''
+                docker push devopseasylearning2021/bernis2010:1
                 pwd
                 touch douala
                 '''
