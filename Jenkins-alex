@@ -2,53 +2,46 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                sh '''
-                touch alex 
-                ls 
-
-
-                '''
-
-            }
-        }
-    }
-    
-
-    stages {
         stage('Hello1') {
             steps {
                 sh '''
-
-                mkdir alex
-
+                ls
+                pwd
+                free
+               
                 '''
             }
         }
-    }
-
-
-    stages {
-        stage('Hello2') {
+    
+    stage('Hello2') {
             steps {
                 sh '''
-
-                free
-
-
+                uname -a
+                mkdir alexx
+                
                 '''
             }
         }
+
+    stage('Hello3') {
+            steps {
+                sh '''
+                touch alexx
+               
+                '''
+            }
+        }
+    
+    stage('Hello4') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    
+    
+    
     }
 
-
-
-
-
-
-
-
-
+    
 
 }
