@@ -5,18 +5,40 @@ pipeline {
 
     stages {
 
-        
+
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                 sh ''' 
+                ls
+                pwd
+                touch steve
+                  '''
             }
         }
+        
 
-
+    stage('Hello1') {
+            steps {
+                 sh ''' 
+                copy
+                env
+                volume
+                 '''
+            }
+        }
+        
+    stage('Hello2') {
+            steps {
+                  sh ''' 
+                from
+                cmd
+                env
+                   '''
+            }
+        }
     }
 
 
 
 
 }
-
