@@ -48,7 +48,7 @@ pipeline {
      stage('docker push  ') {
             steps {
                sh '''
-              docker push devopseasylearning2021/eric:001 
+              docker push devopseasylearning2021/ousmane:001 
                 '''
             }
         }
@@ -57,10 +57,3 @@ pipeline {
 
 
     }
-
-
-
-
-
-
-}
