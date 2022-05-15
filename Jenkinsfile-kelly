@@ -2,10 +2,48 @@ pipeline {
     agent any
 
     stages {
+
+
+
         stage('Hello') {
             steps {
-                echo 'Hello World'
+               sh '''
+                ls
+                pwd
+                touch kelly vincy 
+                mkdir anita
+
+               '''
             }
         }
+
+
+        stage('Hello1') {
+            steps {
+                sh '''
+                uname -r
+               '''
+            }
+        }
+
+
+
+        stage('Hello2') {
+            steps {
+                sh '''
+                nproc
+                cat /etc/*release
+               '''
+            }
+        }
+
+
+
+
+
     }
+
+
+
+
 }
