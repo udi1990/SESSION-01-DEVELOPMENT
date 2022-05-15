@@ -25,7 +25,7 @@ pipeline {
                     ...
             }
         }
-        stage('Hello-serge') {
+        stage('Hello1') {
             steps {
                    ...
                 sh 
