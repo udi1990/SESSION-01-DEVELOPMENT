@@ -1,12 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        username = 'devopseasylearning2021'
-        password = 'DevOps2021'
     
-    }
-
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
@@ -34,10 +29,16 @@ pipeline {
             }
         }
 
-    stage('docker login') {
+ stage('Docker login ') {
             steps {
                sh '''
-              docker login -u $username -p $password
+   withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
+                         sh '''
+                            echo "${password} | docker login -u ${username} --password-stdin"
+                '''
+            }
+        }
+              
                 '''
             }
         }
