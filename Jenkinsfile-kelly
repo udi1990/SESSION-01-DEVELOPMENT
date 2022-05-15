@@ -5,8 +5,8 @@ options {
   }
 
  environment {
-        Username: 'devopseasylearning2021'
-        Password:  'DevOps2021@'
+        Username = 'devopseasylearning2021'
+        Password = 'DevOps2021@'
 
     }
 
