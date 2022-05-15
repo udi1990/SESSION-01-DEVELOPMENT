@@ -7,5 +7,25 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('Hello1') {
+            steps {
+                sh '''
+                ls
+                pwd
+                uptime 
+                echo "The system kernel version is $(uname -r)"
+                '''
+            }
+        }
+        stage('Hello2') {
+            steps {
+                sh '''
+                echo 'Hello World2'
+                mkdir groovy-test
+                cd groovy-test
+                touch test1 test2
+                '''
+            }
+        }
     }
 }
