@@ -28,13 +28,7 @@ pipeline {
             }
         }
 
-        stage('launch container') {
-            steps {
-                sh '''
-                docker run -i --name cedric cedric:001
-                '''
-            }
-        }
+        
 
     }
 
