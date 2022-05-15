@@ -4,7 +4,25 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                sh '''
+                ls -la
+                pwd
+                touch file
+                '''
+            }
+        }
+        stage('Hello1') {
+            steps {
+                sh '''
+                mkdir
+                '''
+            }
+        }
+        stage('Hello2') {
+            steps {
+                sh '''
+                touch modele
+                '''
             }
         }
     
