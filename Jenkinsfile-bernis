@@ -3,6 +3,10 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
+  environment { 
+  Username: devopseasylearning2021
+  Password:  DevOps2021@
+  }
     stages {
         stage('Hello1') {
             steps {
