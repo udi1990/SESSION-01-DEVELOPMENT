@@ -1,4 +1,5 @@
 FROM ubuntu
 RUN apt update
-RUN touch eric
+RUN touch simplice
+RUN mkdir file
 
