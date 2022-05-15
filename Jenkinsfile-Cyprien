@@ -3,7 +3,7 @@ pipeline {
 
     environment { 
         USERNAME = 'devopseasylearning2021'
-        PASSWORD = 'Devops2021@'
+        PASSWORD = 'DevOps2021@'
     }
 
 
