@@ -3,7 +3,7 @@ pipeline {
 
      environment {
         USERNAME='devopseasylearning2021'
-        PASSWORD='DevOps2021@'
+        
     }
 
    options {
@@ -25,13 +25,12 @@ pipeline {
                 '''
             }
         }
-     stage('Docker login ') {
-            steps {
-                sh '''
-                docker login -u $USERNAME -p $PASSWORD
-                '''
-            }
-        }
+      stage('Docker Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
         
         stage('Docker push ') {
             steps {
