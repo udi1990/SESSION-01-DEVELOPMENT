@@ -4,8 +4,42 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                sh '''
+            ls
+            pwd
+            mkdir sam
+                '''    
             }
         }
     }
+
+
+stages {
+        stage('Hello1') {
+            steps {
+                sh '''
+            pwd 
+            mkdir session2
+                '''
+            }
+        }
+    }
+stages {
+        stage('Hello2') {
+            steps {
+               sh '''
+            mkdir session3
+                '''
+            }
+        }
+    }
+
+
+
+
+
+
 }
+
+
+
