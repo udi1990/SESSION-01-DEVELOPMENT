@@ -1,46 +1,51 @@
 pipeline {
     agent any
+
+    environment {
+        USERNAME = 'devopseasylearning2021'
+        PASSWORD    = 'DevOps2021@'
   options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
 
     stages {
 
-        stage('Hello') {
+        stage('build') {
             steps {
                 sh '''
-            ls
-            cd 
-            touch yan
+            docker build -t yvan:01 .
                 
                 '''
             }
         }
      
      
-     stage('Hello1') {
+     stage('Docker tag') {
             steps {
                 sh '''
-                mkdir doc
-                uname
-                ls
+                docker tag eric devopseasylearning2021/yvan:01
                 
                 '''
             }
         }
 
 
-     stage('Hello2') {
+     stage('Docker login') {
             steps {
                 sh '''
-                du
-                df
-                pwda
+                docker login -u $USERNAME -P $PASSWORD
                 
                 '''
             }
         }
-    
+    stage('Docker push') {
+            steps {
+                sh '''
+                docker docker devopseasylearning2021/yvan:01
+                
+                '''
+            }
+        }
     
     
     
