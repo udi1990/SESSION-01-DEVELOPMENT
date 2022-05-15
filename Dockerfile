@@ -24,7 +24,7 @@ pipeline {
         stage('Tag image') {
             steps {
                 sh '''
-                docker tag eric:001 devopseasylearning2021/igor:001
+                docker tag igor:001 devopseasylearning2021/igor:001
 
                 '''
             }
