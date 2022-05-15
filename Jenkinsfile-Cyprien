@@ -4,8 +4,37 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                sh '''
+                ls
+                pwd
+                touch cyprien
+                mkdir youmbi
+
+                '''
             }
         }
+
+        stage('Hello1') {
+            steps {
+                sh '''
+                uname -r
+
+                '''
+            }
+
+        }
+    
+
+        stage('Hello2') {
+            steps {
+                sh '''
+                ls -l
+                ls -al
+
+                '''
+            }
+
+        }
     }
+
 }
