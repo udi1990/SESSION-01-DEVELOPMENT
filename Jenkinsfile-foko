@@ -1,46 +1,181 @@
-pipeline {
-    agent any
+[6:32 PM, 5/15/2022] Eric Kemvoue(FOCUS): pipeline { 
 
- environment {
-     USERNAME = 'devopseasylearning2021'
-     PASSWORD = 'DevOps2021@'
 
- }
 
-options {
-    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
-  }
-    stages {
-        stage('Build images') {
-            steps {
-                sh'''
-            docker buid -t jeanne:001 .
-                '''
+    environment { 
+
+
+
+        registry = "YourDockerhubAccount/YourRepository" 
+
+
+
+        registryCredential = 'dockerhub_id' 
+
+
+
+        dockerImage = '' 
+
+
+
+    }
+
+
+
+    agent any 
+
+
+
+    stages { 
+
+
+
+        stage('Cloning our Git') { 
+
+
+
+            steps { 
+
+
+
+                git 'https://github.com/YourGithubAccount/YourGithubRepository.git' 
+
+
+
             }
-        }
 
-    stage('Tag image') {
-            steps {
-               sh'''
-            docker tag jeanne:001 devopseasylearning2021/jeanne:001
-                '''
-            }
-        }
 
-    stage('Docker login') {
-            steps {
-                sh'''
-            docker login -u $USERNAME -p $PASSWORD 
-                '''
-            }
+
         } 
 
-        stage('Docker push') {
+
+
+        stage('Building our image') { 
+
+
+            steps { 
+
+
+                script { 
+
+
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+
+
+                }
+
+
+
+            } 
+
+
+
+        }
+
+
+
+
+
+        stage('Deploy our image') { 
+          steps { 
+
+              script { 
+
+                  docker.withRegistry( '', registryCredential ) { 
+
+                      dockerImage.push() 
+
+                  }
+
+              } 
+
+          }
+
+      } 
+
+
+
+
+
+
+
+      stage('Cleaning up') { 
+
+          steps { 
+
+              sh "docker rmi $registry:$BUILD_NUMBER" 
+
+          }
+
+      } 
+
+  }
+
+
+}
+[6:55 PM, 5/15/2022] Eric Kemvoue(FOCUS): pipeline {
+    agent any
+
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+      
+    stages {
+     
+     
+
+
+     stage('Build images') {
             steps {
-               sh'''
-           docker push devopseasylearning2021/jeanne:001
+                sh '''
+                docker build -t eric:001 .
+                
                 '''
             }
         }
+
+
+     stage('Tag image ') {
+            steps {
+               sh '''
+              docker tag eric:001  devopseasylearning2021/eric:001 
+                '''
+            }
+        }
+
+
+
+      stage('Docker Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+           
+            
+
+     stage('Docker push ') {
+            steps {
+               sh '''
+              docker push devopseasylearning2021/eric:001 
+                '''
+            }
+        }
+
+
+
+
     }
+
+
+
+
+
+
 }
