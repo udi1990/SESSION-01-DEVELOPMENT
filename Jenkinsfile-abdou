@@ -6,4 +6,38 @@ pipeline {
                 echo 'Welcome to LambdaTest'
             }
         }
+ stage('Welcome Step2') {
+            steps { 
+               sh '''
+               pwd
+               mkdr abdou
+               '''
+            }
+        
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
