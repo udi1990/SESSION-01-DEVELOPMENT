@@ -19,7 +19,7 @@ environment {
      stage('Build images') {
             steps {
                 sh '''
-                docker build -t jean:001
+                docker build -it jean:001
                 
                 '''
             }
@@ -34,7 +34,7 @@ environment {
             }
         }
 
-        stage('Login') {
+        stage('Docker Login') {
             steps {
                sh '''
               docker login -u $USERNAME -p $PASSWORD
@@ -42,7 +42,7 @@ environment {
             }
         }
 
-        stage('docker push') {
+        stage('Docker push') {
             steps {
                sh '''
               docker push devopseasylearning2021/jean:001
