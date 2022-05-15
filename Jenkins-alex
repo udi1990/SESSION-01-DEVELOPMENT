@@ -2,8 +2,8 @@ pipeline {
     agent any
 
 environment {
-        Username = devopseasylearning2021
-        Password = DevOps2021
+        username = 'devopseasylearning2021'
+        password = 'DevOps2021'
     
     }
 
