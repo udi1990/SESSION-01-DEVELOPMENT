@@ -57,6 +57,15 @@ stage('Login') {
 
 
 
+
+
+    }
+
+
+
+
+
+}
 post {
    
    success {
@@ -75,12 +84,9 @@ post {
     cleanup {
       deleteDir()
     }
-
-    }
-
+}
 
 
 
 
 }
-
