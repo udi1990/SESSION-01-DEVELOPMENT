@@ -33,7 +33,7 @@ pipeline {
                 from
                 cmd
                 env
-                   '''
+                '''
             }
         }
     }
@@ -42,3 +42,4 @@ pipeline {
 
 
 }
+
