@@ -1,36 +1,43 @@
 pipeline {
     agent any
+       environment {
+        username = 'devopeasylearning2021'
+        password = 'devOps2021@'
+    }
     options {buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
     artifactNumToKeepStr: '', 
     daysToKeepStr: '3', 
     numToKeepStr: '5'))
     disableConcurrentBuilds()}
+ 
 
     stages {
-        stage('Hello') {
+        stage('build images') {
             steps {
-                echo 'Hello World'
+                    sh'''
+                    docker build -t nelly:001.
+                    '''
             }
         }
-        stage('Hello1') {
+        stage('Tag images') {
             steps {
-                sh '''
-                ls
-                pwd
-                uptime 
-                echo "The system kernel version is $(uname -r)"
-                '''
+                    sh'''
+                    docker tag nelly:001 devopseasylearning2021/nelly:001
+                    '''
             }
         }
-        stage('Hello2') {
+        stage('Docker login') {
             steps {
-                sh '''
-                echo 'Hello World2'
-                rm -rf groovy-test
-                mkdir groovy-test
-                cd groovy-test
-                touch test1 test2
-                '''
+                sh'''
+                    docker login -u $username -p $password 
+                    '''
+            }
+        }
+        stage('Docker push') {
+            steps {
+                sh'''
+                    docker push devopseasylearning2021/nelly:001
+                    '''
             }
         }
     }
