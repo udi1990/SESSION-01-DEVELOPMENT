@@ -17,6 +17,7 @@ stage('Hello1') {
                 sh '''
                 touch test.txt
                 pwd
+                mkdir Jean_test
                 ''' 
             }
         }
@@ -27,6 +28,7 @@ stage('Hello2') {
                 sh '''
                 arch
                 id
+                whoami
                 ''' 
             }
         }
@@ -36,6 +38,7 @@ stage('Hello3') {
                 sh '''
                 uname
                 ls -l
+                echo"I love DevOps"
                 ''' 
             }
         }
