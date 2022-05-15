@@ -2,42 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('let see what happened here') {
+        stage('Hello') {
             steps {
-                sh '''
-                ls
-                pwd
-               
-                '''
+                echo 'Hello World'
             }
+        }
+    }
+}
 
-     
-       }
-       stage('build dockerimage') {
-            steps {
-               sh '''
-              docker build -t bernis-image:01 .
-                pwd
-                
-                '''
-            }
-        }
-        stage('Hello3') {
-            steps {
-                sh '''
-               docker ps
-                
-                '''
-        }
-    }
-      stage('launch conatainer') {
-            steps {
-                sh '''
-                ls
-                pwd
-                
-                '''
-        }
-    }
-}
-}
