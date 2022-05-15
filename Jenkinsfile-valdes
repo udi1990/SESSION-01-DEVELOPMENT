@@ -16,6 +16,42 @@ pipeline {
      
      
 
+stage('Build images') {
+            steps {
+                sh '''
+                docker build -t valdes:001 .
+                
+                '''
+            }
+        }
+     
+  stage('Tag image') {
+            steps {
+                sh '''
+                docker tag valdes:001 devopseasylearning2021/valdes:001
+                
+                '''
+            }
+        }   
+
+  stage('Docker login ') {
+            steps {
+                sh '''
+                docker login -u $USERNAME -p $PASSWORD
+                
+                '''
+            }
+        }   
+  
+  stage('Docker push ') {
+            steps {
+                sh '''
+                docker push devopseasylearning2021/valdes:001
+                
+                '''
+            }
+        } 
+     
 
      stage('Hello1') {
             steps {
@@ -44,7 +80,3 @@ pipeline {
 
 
 }
-
-
-}
-
