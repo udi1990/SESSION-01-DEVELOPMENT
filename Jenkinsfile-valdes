@@ -1,47 +1,33 @@
 pipeline {
     agent any
-
-options {
-    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
-  }
-
-       }
-
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+      
     stages {
-        stage('Hello') {
-            steps {
-                sh '''
-            ls
-            pwd
-            touch valdo
-            mkdir Vald
-                '''
-            }
-        }
+     
+     
 
-        stage('Hello1') {
+
+     stage('Hello1') {
             steps {
                 sh '''
-                uname
-                uptime
                 uname -r
+                
                 '''
             }
         }
 
-        stage('Hello2') {
+
+     stage('Hello2') {
             steps {
-                sh '''
-                date
-            
+               sh '''
+              ls -l 
+              nproc 
                 '''
-                echo 'Hello World'
-             }
-                }
-
-
-
-
+            }
+        }
 
     }
 
