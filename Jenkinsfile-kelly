@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+		DOCKERHUB_CREDENTIALS=credentials('Dockerhub')
 	}
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
@@ -18,7 +18,7 @@ pipeline {
      stage('Build images') {
             steps {
                 sh '''
-                docker build -t eric:001 .
+                docker build -t kelly:001 .
                 
                 '''
             }
@@ -28,7 +28,7 @@ pipeline {
      stage('Tag image ') {
             steps {
                sh '''
-              docker tag eric:001  devopseasylearning2021/eric:001 
+              docker tag kelly:001  devopseasylearning2021/eric:001 
                 '''
             }
         }
@@ -48,7 +48,7 @@ pipeline {
      stage('Docker push ') {
             steps {
                sh '''
-              docker push devopseasylearning2021/eric:001 
+              docker push devopseasylearning2021/kelly:001 
                 '''
             }
         }
@@ -59,6 +59,27 @@ pipeline {
     }
 
 
+
+
+   post {
+   
+   success {
+      slackSend (channel: '#development-alerts', color: 'good', message: "SUCCESSFUL:  Branch name  <<${env.BRANCH_NAME}>>  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+
+ 
+    unstable {
+      slackSend (channel: '#development-alerts', color: 'warning', message: "UNSTABLE:  Branch name  <<${env.BRANCH_NAME}>>  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+
+    failure {
+      slackSend (channel: '#development-alerts', color: '#FF0000', message: "FAILURE:  Branch name  <<${env.BRANCH_NAME}>> Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    }
+   
+    cleanup {
+      deleteDir()
+    }
+}
 
 
 
