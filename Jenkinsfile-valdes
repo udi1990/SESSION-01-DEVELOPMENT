@@ -1,12 +1,10 @@
 pipeline {
-
     agent any
-    
-     environment {
-        DISABLE_AUTH = 'devopseasylearning2021'
-        DB_ENGINE    = 'sDevOps2021@'
-     }
-    
+
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
@@ -16,7 +14,8 @@ pipeline {
      
      
 
-stage('Build images') {
+
+     stage('Build images') {
             steps {
                 sh '''
                 docker build -t valdes:001 .
@@ -24,53 +23,38 @@ stage('Build images') {
                 '''
             }
         }
-     
-  stage('Tag image') {
-            steps {
-                sh '''
-                docker tag valdes:001 devopseasylearning2021/valdes:001
-                
-                '''
-            }
-        }   
-
-  stage('Docker login ') {
-            steps {
-                sh '''
-                docker login -u $USERNAME -p $PASSWORD
-                
-                '''
-            }
-        }   
-  
-  stage('Docker push ') {
-            steps {
-                sh '''
-                docker push devopseasylearning2021/valdes:001
-                
-                '''
-            }
-        } 
-     
-
-     stage('Hello1') {
-            steps {
-                sh '''
-                uname -r
-                
-                '''
-            }
-        }
 
 
-     stage('Hello2') {
+     stage('Tag image ') {
             steps {
                sh '''
-              ls -l 
-              nproc 
+              docker tag eric:001  devopseasylearning2021/valdes:001 
                 '''
             }
         }
+
+
+
+      stage('Docker Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+           
+            
+
+     stage('Docker push ') {
+            steps {
+               sh '''
+              docker push devopseasylearning2021/eric:001 
+                '''
+            }
+        }
+
+
+
 
     }
 
