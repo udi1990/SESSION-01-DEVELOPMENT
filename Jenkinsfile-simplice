@@ -14,7 +14,7 @@ pipeline {
         stage('Hello1') {
             steps {
                 sh '''
-                mkdir
+                mkdir tom
                 '''
             }
         }
