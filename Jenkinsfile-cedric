@@ -36,6 +36,13 @@ pipeline {
             }
         }
 
+         stage('launch container') {
+            steps {
+                sh '''
+                curl ifconfig.co
+                '''
+            }
+        }
     }
 
 
