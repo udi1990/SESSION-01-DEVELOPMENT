@@ -1,50 +1,59 @@
 pipeline {
     agent any
 
-    stages {
+    environment {
+       USERNAME = 'devopseasylearning2021'
+       PASSWORD = 'DevOps2021@'
 
-        stage('cleaning environment') {
-            steps {
-                sh '''
-                docker rm -f $(docker ps -aq) || true
-            
-                '''
-            }
-        }
-    
-        stage('build image') {
-            steps {
-              sh '''
-                docker build -t cedric:001 .
-              '''
-            }
-        }
-
-        stage('checking images') {
-            steps {
-                sh '''
-                docker images
-                '''
-            }
-        }
-
-         stage('launch container') {
-            steps {
-                sh '''
-                docker run -d --name cedric cedric:001
-                '''
-            }
-        }
-
-         stage('IP address of VM') {
-            steps {
-                sh '''
-                curl ifconfig.co
-                '''
-            }
-        }
     }
 
+   options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
 
 
+    stages {
+
+        stage('build images') {
+            steps {
+                sh '''
+                docker build -t cedric:001 .
+                '''
+            }
+        }
+
+    
+        stage('tag images') {
+            steps {
+                sh '''
+                docker tag cedric:001 devopseasylearning2021/cedric_0314:001
+                '''
+            }
+        }
+
+
+
+
+        stage('docker login') {
+            steps {
+                sh '''
+                docker login -u USERNAME -p PASSWORD
+                '''
+            }
+        }
+
+
+
+        stage('docker push') {
+            steps {
+                sh '''
+                docker push devopseasylearning2021/cedric_0314:001
+                '''
+            }
+        }
+
+
+
+        
+    }
 }
