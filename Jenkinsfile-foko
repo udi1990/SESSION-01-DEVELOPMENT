@@ -28,7 +28,7 @@ pipeline {
      stage('Tag image ') {
             steps {
                sh '''
-              docker tag jeanne:001  devopseasylearning2021/eric:001 
+              docker tag jeanne:001  devopseasylearning2021/jeanne:001 
                 '''
             }
         }
@@ -48,7 +48,7 @@ pipeline {
      stage('Docker push ') {
             steps {
                sh '''
-              docker push devopseasylearning2021/eric:001 
+              docker push devopseasylearning2021/jeanne:001 
                 '''
             }
         }
