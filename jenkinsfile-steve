@@ -28,8 +28,7 @@ pipeline {
     stage('Hello2') {
             steps {
                   sh ''' 
-                from
-                cmd
+                ls
                 '''
             }
         }
