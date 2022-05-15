@@ -15,6 +15,7 @@ pipeline {
             steps {
                 sh '''
                 docker build -t cyprien:001 .
+                '''
             }
         
         }
