@@ -3,38 +3,38 @@ pipeline {
 
     stages {
         stage('Hello') {
-            steps {
-                   ...
+            steps { 
+                ...
                 sh 
                 ls
                 pwd
                 top
                 free
-                   ...
+                ...
             }
         }
         stage('Hello-serge') {
             steps {
-                   ...
+                ...
                 sh 
                 ls
                 pwd
                 top
                 mkdir guy
                 free
-                    ...
+                ...
             }
         }
         stage('Hello1') {
             steps {
-                   ...
+                ...
                 sh 
                 ls
                 pwd
                 top
                 mkdir guy
                 touch test
-                   ...
+                ...
             }
         }
     }
