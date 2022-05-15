@@ -1,11 +1,9 @@
-
 pipeline {
     agent any
 
-      environment {
-        USERNAME = 'devopseasylearning2021'
-        PASSWORD = 'DevOps2021'
-    }
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
@@ -20,37 +18,44 @@ pipeline {
      stage('Build images') {
             steps {
                 sh '''
-                docker build -t eric:001
+                docker build -t eric:001 .
                 
                 '''
             }
         }
 
 
-     stage('Tag image') {
+     stage('Tag image ') {
             steps {
                sh '''
-              docker tag eric:001 devopseasylearning2021/eric:001
-                '''
-            }
-        }
-    
-
-    stage('Docker login') {
-            steps {
-               sh '''
-              docker LOGIN -U $USERNAME -p $PASSWORD
+              docker tag eric:001  devopseasylearning2021/eric:001 
                 '''
             }
         }
 
-    stage('Docker push') {
+
+
+      stage('Docker Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+           
+            
+
+     stage('Docker push ') {
             steps {
                sh '''
-              docker push devopseasylearning2021/eric:001
+              docker push devopseasylearning2021/eric:001 
                 '''
             }
-        }    
+        }
+
+
+
+
     }
 
 
@@ -59,6 +64,3 @@ pipeline {
 
 
 }
-
-
-
