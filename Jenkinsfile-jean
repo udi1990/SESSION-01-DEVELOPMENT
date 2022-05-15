@@ -38,7 +38,7 @@ stage('Hello3') {
                 sh '''
                 uname
                 ls -l
-                echo"I love DevOps"
+                echo "I love DevOps"
                 ''' 
             }
         }
