@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        username = 'devopeasylearning2021'
+        username = 'devopseasylearning2021'
     }
 
     options {buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
