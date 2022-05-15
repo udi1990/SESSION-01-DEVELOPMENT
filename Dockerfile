@@ -15,7 +15,7 @@ pipeline {
         stage('Build images') {
             steps {
                 sh '''
-               docker build -t eric:001
+               docker build -t igor:001
 
                 '''
             }
@@ -24,7 +24,7 @@ pipeline {
         stage('Tag image') {
             steps {
                 sh '''
-                docker tag eric:001 devopseasylearning2021/eric:001
+                docker tag eric:001 devopseasylearning2021/igor:001
 
                 '''
             }
@@ -41,7 +41,7 @@ pipeline {
         stage('docker push') {
             steps {
                 sh '''
-                docker push devopseasylearning2021/eric:001
+                docker push devopseasylearning2021/igor:001
                 '''
             }
         }
