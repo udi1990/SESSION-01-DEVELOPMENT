@@ -1,9 +1,9 @@
 pipeline {
     agent any
 environment {
-    USERNAME = 'devopseasylearning'
-    
-}
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
 
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
@@ -35,12 +35,16 @@ environment {
         }
 
         stage('Docker Login') {
+            
+                {
             steps {
                sh '''
-              docker login -u $USERNAME -p $PASSWORD
+             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | Github login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+}
                 '''
             }
         }
+            }
 
         stage('Docker push') {
             steps {
