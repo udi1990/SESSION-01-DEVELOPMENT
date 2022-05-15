@@ -4,9 +4,15 @@ options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
 
+
+
+        environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
  environment {
         Username = 'devopseasylearning2021'
-        Password = 'DevOps2021@'
+        
 
     }
 
@@ -33,13 +39,14 @@ options {
 
 
 
-        stage('docker login') {
-            steps {
-                sh '''
-                docker login -u $Username -p $Password
-               '''
-            }
-        }
+
+
+    stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
 
 
 
