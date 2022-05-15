@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                sh'''
+                ls
+                pwd
+                touch ivo
+                '''
+            }
+        }
+
+        stage('Hello') {
+            steps {
+                sh'''
+                mkdir tom
+                free -h
+                '''
+            }
+        }
+
+        stage('Hello') {
+            steps {
+                sh'''
+                uname -r
+                '''
+            }
+        }
+    }
+}
