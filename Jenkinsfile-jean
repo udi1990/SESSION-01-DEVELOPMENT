@@ -1,60 +1,39 @@
 pipeline {
     agent any
-
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
-     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')),
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
-
-    
-
-
+      
+      
     stages {
-        stage('Hello') {
+     
+     
+
+
+     stage('Hello1') {
             steps {
                 sh '''
-                ls
-                df
-                ''' 
+                uname -r
+                
+                '''
             }
         }
 
 
-stage('Hello1') {
+     stage('Hello2') {
             steps {
-                sh '''
-                touch test.txt
-                pwd
-                mkdir Jean_test
-                ''' 
+               sh '''
+              ls -l 
+              nproc 
+                '''
             }
         }
-
-
-stage('Hello2') {
-            steps {
-                sh '''
-                arch
-                id
-                whoami
-                ''' 
-            }
-        }
-
-stage('Hello3') {
-            steps {
-                sh '''
-                uname
-                ls -l
-                echo " I love DevOps"
-                ''' 
-            }
-        }
-
-
-
-
 
     }
+
+
+
+
 
 
 }
