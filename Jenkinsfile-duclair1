@@ -1,9 +1,7 @@
 pipeline {
     agent any
     environment {
-        USERNAME = 'devopseasylearning2021'
-        PASSWORD =  'DevOps2021@'
-
+     DOCKERHUB_CREDENTIALS=credentials('dockerhub')
     }
     options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
@@ -32,11 +30,13 @@ stage('tag image') {
 stage('docker login') {
             steps {
                 sh '''
-              docker login -u $USERNAME -p $PASSWORD
+ 
 
                 '''
             }
         }
+
+
 
 stage('docker push') {
             steps {
@@ -47,7 +47,12 @@ stage('docker push') {
             }
         }
 
+stage('Login') {
 
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
 
 
 
