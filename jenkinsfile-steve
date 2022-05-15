@@ -20,7 +20,7 @@ pipeline {
     stage('Hello1') {
             steps {
                  sh ''' 
-                copy
+                mkdir week
                  '''
             }
         }
@@ -39,4 +39,3 @@ pipeline {
 
 
 }
-
