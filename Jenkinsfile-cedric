@@ -4,7 +4,7 @@ pipeline {
    //Setting the environment variables USERNAME and PASSWORD
     environment {
        USERNAME = 'devopseasylearning2021'
-       PASSWORD = 'DevOps2021@'
+    
 
     }
 
@@ -36,7 +36,7 @@ pipeline {
         stage('docker login') {
             steps {
                 sh '''
-                docker login -u USERNAME --password-stdin PASSWORD
+                docker login -u $USERNAME -p $PASSWORD
                 '''
             }
         }
