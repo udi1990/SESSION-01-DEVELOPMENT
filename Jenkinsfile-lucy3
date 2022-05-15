@@ -44,5 +44,3 @@ stage('launch container') {
 
 
 }
-
-
