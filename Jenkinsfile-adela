@@ -1,11 +1,9 @@
 pipeline {
 
     environment {
-        USERNAME = 'devopseasylearning2021'
-        PASSWORD = 'DevOps2021@'
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
 
-
-    }
 
 
     agent any
@@ -29,25 +27,25 @@ pipeline {
         stage('Tag image') {
             steps {
                 sh '''
-                docker tag adele:001 devopseasylearning2021/adela05:001
+                docker tag adele:001 devopseasylearning/adela05:001
             
                 '''
             }
         }
 
-        stage('Docker login') {
+        stage('Docker login ') {
             steps {
-                sh '''
-                docker login -u $USERNAME -p $PASSWORD
-            
-                '''
+               
+                         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+
             }
         }
+
 
         stage('Docker push') {
             steps {
                 sh '''
-                docker push devopseasylearning2021/adela05:001 
+                docker push devopseasylearning/adela05:001 
             
                 '''
             }
