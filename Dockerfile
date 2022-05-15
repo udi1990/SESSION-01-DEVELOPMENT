@@ -1,54 +1,58 @@
 pipeline {
     agent any
 
-     environment {
-         USERNAME = 'devopseasylearning2021'
-         
-     }
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
       
-
-
+      
     stages {
+     
+     
 
 
-
-        stage('Build images') {
+     stage('Build images') {
             steps {
                 sh '''
-               docker build -t igor:001 .
-
+                docker build -t igor:001 .
+                
                 '''
             }
         }
- 
-        stage('Tag image') {
-            steps {
-                sh '''
-                docker tag igor:001  devopseasylearning2021/igor:001
 
-                '''
-            }
-        }
-    
-        stage('docker login') {
+
+     stage('Tag image ') {
             steps {
-                sh '''
-                docker login -u $USERNAME -p $PASSWORD
+               sh '''
+              docker tag igor:001  devopseasylearning2021/igor:001 
                 '''
             }
         }
-    
-        stage('docker push') {
+
+
+
+      stage('Docker Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+           
+            
+
+     stage('Docker push ') {
             steps {
-                sh '''
-                docker push devopseasylearning2021/igor:001
+               sh '''
+              docker push devopseasylearning2021/igor:001 
                 '''
             }
         }
+
 
 
 
@@ -59,6 +63,4 @@ pipeline {
 
 
 
-
 }
-
