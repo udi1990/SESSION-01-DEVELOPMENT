@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('cedric1') {
+            steps {
+                sh '''
+                echo "I love DevOps"
+                free -h
+                touch cedric vanelle adele
+                '''
+            }
+        }
+    
+        stage('cedric2') {
+            steps {
+                sh '''
+                uname -a
+                mkdir paul-biya
+                '''
+            }
+        }
+    
+        stage('cedric3') {
+            steps {
+                sh '''
+                ls
+                uname -r
+                '''
+            }
+        }
+    
+        stage('cedric4') {
+            steps {
+                sh '''
+                ls
+                pwd
+                '''
+            }
+        }
+    
+    }
+}
