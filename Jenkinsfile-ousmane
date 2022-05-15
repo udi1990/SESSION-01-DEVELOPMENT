@@ -1,37 +1,62 @@
 pipeline {
     agent any
-options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
-     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')),
+
+      environment {
+        USERNAME  = 'devopseasylearning2021'
+        PASSWORD    = 'DevOps2021@'
+    }
+
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
-
+      
+      
     stages {
+     
+     
 
 
-        stage('Hello') {
+     stage('build images') {
             steps {
-                echo 'Hello World'
+                sh '''
+                docker build -t ousmane:001 .
+                
+                '''
             }
         }
 
-         stage('Hello1') {
+
+     stage('Tag image ') {
             steps {
-                echo 'Hello World'
+               sh '''
+              docker tag ousmane:001  devopseasylearning2021/ousmane:001 
+                '''
             }
         }
 
-         stage('Hello2') {
+
+
+    stage('docker login ') {
             steps {
-                echo 'Hello World'
+               sh '''
+              docker login -u $USERNAME -p $PASSWORD
+                '''
             }
         }
 
+
+     stage('docker push  ') {
+            steps {
+               sh '''
+              docker push devopseasylearning2021/eric:001 
+                '''
+            }
+        }
 
 
 
 
     }
-
-
 
 
 
