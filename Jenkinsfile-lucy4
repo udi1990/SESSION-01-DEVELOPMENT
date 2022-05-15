@@ -1,56 +1,50 @@
- pipeline{
+pipeline{
+    ptions {
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
 options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')),
       disableConcurrentBuilds() }
-
+pipeline {
     agent any
-
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+      
     stages {
-        stage('Hello') {
-            steps {
-                sh '''
-                ls
-                pwd
-                '''
-            }
-        }
+     
+     
 
- stage('Hello1') {
+
+     stage('Hello1') {
             steps {
                 sh '''
-                uname
-                ls
-                pwd
+                uname -r
+                
                 '''
             }
         }
 
 
- stage('Hello2') {
+     stage('Hello2') {
             steps {
-              sh '''
-                touch chinonso
-                '''  
-            
-            }
-        }
-
- stage('Hello4') {
-            steps {
-                sh '''
-                 uname
-                ls
-                pwd
+               sh '''
+              ls -l 
+              nproc 
                 '''
             }
         }
-
-
-
 
     }
 
 
 
 
- }
+
+
+}
+
+
+
+}
