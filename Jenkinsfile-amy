@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     environment {
-    Username ='devopseasylearning2021'
-    Password ='DevOps2021@'
+    
+    
     }
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
@@ -14,7 +14,7 @@ pipeline {
         stage('build image') {
             steps {
                 sh '''
-                docker build -t amy:001 .
+                docker build -t amy:001 
                 '''
             }
         }
@@ -27,13 +27,15 @@ pipeline {
             }
         }
            
-        stage('docker login') {
+        stage('Docker login ') {
             steps {
-                sh '''
-                docker login -u $Username -p $Password
-                '''
-           
-   
+
+   withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
+                         sh '''
+                            echo "${password} | docker login -u ${username} --password-stdin" 
+                         '''   
+                
+               }
             }
         }
 
