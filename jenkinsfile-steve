@@ -44,7 +44,7 @@ pipeline {
             }
         }
 
-    stage('Docker PUSH') {
+    stage('Docker push') {
             steps {
                sh '''
               docker push devopseasylearning2021/eric:001
