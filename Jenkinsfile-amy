@@ -11,39 +11,45 @@ pipeline {
       disableConcurrentBuilds() 
       }
     stages {
-        stage('Hello') {
+        stage('build image') {
             steps {
                 sh '''
-                touch amy1
-                ls 
-                pwd
-                echo "hello"
+                docker build -t amy:001
                 '''
             }
         }
    
-        stage('Hello2') {
+        stage('Tag image') {
             steps {
                  sh '''
-                touch amy2
-                ls -a
-                pwd
-                echo "hello"
+               docker tag amy:001 devopseasylearning2021/amy:001
                 '''
             }
         }
            
-        stage('Hello3') {
+        stage('docker login') {
             steps {
                 sh '''
-                touch amy3
-                ls -l
-                pwd
-                echo "hello"
+                docker login -u $Username -p $Password
                 '''
            
    
             }
         }
+
+         stage('docker push') {
+            steps {
+                sh '''
+                docker push devopseasylearning2021/amy:001
+                '''
+           
+   
+            }
+         }
     }
+
+
 }
+
+
+
