@@ -1,32 +1,51 @@
 pipeline {
     agent any
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M3"
-    }
+      environment {
+        USERNAME = ' devopseasylearning2021'
+        PASSWD =  ' DevOps2021@ '
+      }
 
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+      
     stages {
-        stage('Build') {
+     
+          stage('build image ') {
             steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-
-                // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh '''
+               docker build -t serge:001 .
+                  '''
+             }     
             }
+          stage('tag image ') {
+            steps {
+                sh '''
+                docker tag serge devopseasylearning2021/serge:001 
+                  
+                   '''
 
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
+            }
+        }  
+
+
+          stage('push image ') {
+            steps {
+                sh '''
+               docker push serge:001 .
+               '''
+            }
+          }
+
+          stage('docker login ') {
+            steps {
+                sh '''
+               docker login -u devopseasylearning2021 -p DevOps2021@ 
+               '''
             }
         }
     }
+
 }
