@@ -1,14 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-        USERNAME = 'devopseasylearning2021'
-        PASSWORD    = 'DevOps2021@'
-        }
-        
-    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+  options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
+
 
     stages {
 
@@ -25,25 +21,28 @@ pipeline {
      stage('Docker tag') {
             steps {
                 sh '''
-                docker tag eric devopseasylearning2021/yvan:01
+                docker tag yvan devopseasylearning2021/yvan:01
                 
                 '''
             }
         }
 
 
-     stage('Docker login') {
+    stage('Docker login ') {
             steps {
-                sh '''
-                docker login -u $USERNAME -P $PASSWORD
-                
+               sh '''
+   withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]){
+                         sh '''
+                            echo "${password} | docker login -u ${username} --password-stdin"
                 '''
             }
         }
+    }
+
     stage('Docker push') {
             steps {
                 sh '''
-                docker docker devopseasylearning2021/yvan:01
+                docker devopseasylearning2021/yvan:01
                 
                 '''
             }
