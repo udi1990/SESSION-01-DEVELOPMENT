@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds(abortPrevious: true)])
     stages {
         stage('Hello1') {
             steps {
@@ -12,7 +12,7 @@ pipeline {
             }
 
         }
-        stage('build') {
+        stage('Hello2') {
             steps {
                 sh '''
                 ls 
@@ -22,7 +22,7 @@ pipeline {
             }
 
         }
-        stage('deploy') {
+        stage('Hello3') {
             steps {
                 sh '''
                 ls 
