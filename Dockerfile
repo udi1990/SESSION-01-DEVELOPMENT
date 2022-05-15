@@ -1,3 +1,5 @@
 FROM ubuntu
-RUN apt update
+RUN update
 RUN touch nelly
+
+docker built -t nelly
