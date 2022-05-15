@@ -6,7 +6,7 @@ pipeline {
         stage('cleaning environment') {
             steps {
                 sh '''
-                docker rm -f $(docker ps -aq)
+                docker rm -f $(docker ps -aq) || true
                 
                 '''
             }
@@ -44,4 +44,5 @@ stage('launch container') {
 
 
 }
+
 
