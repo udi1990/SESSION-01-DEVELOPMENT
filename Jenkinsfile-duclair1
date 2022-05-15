@@ -13,7 +13,7 @@ pipeline {
         stage('Build images') {
             steps {
                 sh '''
-               docker build -t duclair:001 .
+               docker build -t duclair:002 .
 
                 '''
             }
@@ -23,7 +23,7 @@ pipeline {
 stage('tag image') {
             steps {
             sh '''
-       dcoker tag duclair:001 devopseasylearning2021/duclair:001
+       docker tag duclair:001 devopseasylearning2021/duclair:002
 
                 '''
             }
@@ -41,7 +41,7 @@ stage('docker login') {
 stage('docker push') {
             steps {
             sh '''
-       dcoker push  devopseasylearning2021/duclair:001
+       docker push  devopseasylearning2021/duclair:002
 
                 '''
             }
