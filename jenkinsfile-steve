@@ -20,18 +20,18 @@ pipeline {
     stage('Hello1') {
             steps {
                  sh ''' 
-                mkdir week
+                ls -l
                  '''
             }
         }
-        
+
     stage('Hello2') {
             steps {
-                  sh ''' 
-                ls
-                '''
+                 sh ''' 
+                uname -r
+                 '''
             }
-        }
+        } 
     }
 
 
