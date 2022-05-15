@@ -1,49 +1,39 @@
 pipeline {
     agent any
-    options {
-    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
-  }
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
+      
+      
     stages {
-        stage('Hello1') {
+     
+     
+
+
+     stage('Hello1') {
             steps {
                 sh '''
-                ls
-                pwd
-                free
-               
-                '''
-            }
-        }
-    
-    stage('Hello2') {
-            steps {
-                sh '''
-                uname -a
-                mkdir alexx
+                uname -r
                 
                 '''
             }
         }
 
-    stage('Hello3') {
+
+     stage('Hello2') {
             steps {
-                sh '''
-                touch alexx
-               
+               sh '''
+              ls -l 
+              nproc 
                 '''
             }
         }
-    
-    stage('Hello4') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-    
-    
-    
+
     }
 
-    
+
+
+
+
 
 }
