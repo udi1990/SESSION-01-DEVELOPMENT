@@ -2,45 +2,44 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                sh '''
-            ls
-            pwd
-            mkdir sam
-                '''    
-            }
-        }
-    
-
-
-
         stage('Hello1') {
             steps {
                 sh '''
-            pwd 
-            mkdir session2
+                pwd
                 '''
             }
         }
-    
-
         stage('Hello2') {
             steps {
-               sh '''
-            mkdir session3
+                sh '''
+                ls
                 '''
             }
         }
-    
-
-
-
-
-
-
-}
-
+        stage('Hello3') {
+            steps {
+                sh '''
+                mkdir session2
+                '''
+            }
+        }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    }
 
 
 
