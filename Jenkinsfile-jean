@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                sh '''
+                ls
+                df
+                ''' 
+            }
+        }
+
+
+stage('Hello1') {
+            steps {
+                sh '''
+                touch test.txt
+                pwd
+                ''' 
+            }
+        }
+
+
+stage('Hello2') {
+            steps {
+                sh '''
+                arch
+                id
+                ''' 
+            }
+        }
+
+stage('Hello3') {
+            steps {
+                sh '''
+                uname
+                ls -l
+                ''' 
+            }
+        }
+
+
+
+
+
+    }
+
+
+}
