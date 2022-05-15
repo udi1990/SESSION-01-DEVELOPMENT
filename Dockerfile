@@ -1,6 +1,4 @@
-FROM centos
-RUN yum install httpd -y
-COPY index.html /var/www/html/
+FROM ubuntu
+RUN apt update
+RUN touch eric
 
-CMD [“/usr/sbin/httpd”,” -D”,” FOREGROUND”]
-EXPOSE 80
