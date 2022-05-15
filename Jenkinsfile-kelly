@@ -4,14 +4,10 @@ options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
 
-
-
-        environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-	}
-
  environment {
         Username = 'devopseasylearning2021'
+        DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+
         
 
     }
@@ -39,25 +35,24 @@ options {
 
 
 
+        stage('docker login') {
+            steps {
+                sh '''
+              
+               '''
+            }
+        }
 
 
-    stage('Login') {
+
+
+        stage('Login') {
 
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
-
-
-
-        stage('docker push') {
-            steps {
-                sh '''
-               docker push devopseasylearning2021/kelly:001
-               '''
-            }
-        }
 
 
 
