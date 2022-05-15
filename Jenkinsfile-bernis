@@ -33,7 +33,7 @@ pipeline {
         stage('docker loging ') {
             steps {
                 sh '''
-                docker loging -u $USERNAME -p $PASSWORD
+                docker login -u $USERNAME -p $PASSWORD
                 ls 
                 pwd
                 touch douala
