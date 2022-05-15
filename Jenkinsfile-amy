@@ -14,7 +14,7 @@ pipeline {
         stage('build image') {
             steps {
                 sh '''
-                docker build -t amy:001
+                docker build -t amy:001 .
                 '''
             }
         }
