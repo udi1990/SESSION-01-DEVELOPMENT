@@ -19,7 +19,7 @@ pipeline {
         stage('Build images') {
             steps {
                 sh '''
-               docker build -t eric:001 .
+               docker build -t igor:001 .
 
                 '''
             }
