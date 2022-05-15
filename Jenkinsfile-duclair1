@@ -1,39 +1,52 @@
 pipeline {
     agent any
+    environment {
+        USERNAME = 'devopseasylearning2021'
+        PASSWORD =  'DevOps2021@'
+
+    }
     options {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
 
     stages {
-        stage('Hello') {
+        stage('Build images') {
             steps {
                 sh '''
-                ls
-                pwd
+               docker build -t duclair:001 .
 
                 '''
             }
         }
 
 
-stage('Hello1') {
+stage('tag image') {
             steps {
             sh '''
-            uname -r
+       dcoker tag duclair:001 devopseasylearning2021/duclair:001
 
                 '''
             }
         }
 
-stage('Hello2') {
+stage('docker login') {
             steps {
                 sh '''
-                ls -a
-                pwd
+              docker login -u $USERNAME -p $PASSWORD
 
                 '''
             }
         }
+
+stage('docker push') {
+            steps {
+            sh '''
+       dcoker push  devopseasylearning2021/duclair:001
+
+                '''
+            }
+        }
+
 
 
 
