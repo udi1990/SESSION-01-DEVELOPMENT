@@ -14,7 +14,7 @@ options {
         stage('Build images') {
             steps {
                 sh'''
-            docker buit -t jeanne:001 .
+            docker buid -t jeanne:001 .
                 '''
             }
         }
