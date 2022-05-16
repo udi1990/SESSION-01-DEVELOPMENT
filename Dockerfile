@@ -1,5 +1,5 @@
 FROM ubuntu
-RUN update
+RUN apt update
 RUN touch nelly
 
 
