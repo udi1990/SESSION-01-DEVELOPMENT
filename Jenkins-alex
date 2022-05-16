@@ -2,53 +2,25 @@ pipeline {
     agent any
 
     stages {
-
-        stage('cleaning enviroment') {
+        stage('Hello') {
             steps {
                 sh '''
-               docker rm -f $(docker ps -aq) || true 
-               
+                touch file2
+                ls
                 '''
             }
         }
     
-    
-    
-    stage('build the image') {
+         stage('Hello1') {
             steps {
                 sh '''
-              docker build -t alex:001 . 
+                touch file3
+                pwd
                 '''
             }
         }
-    
-    stage('checking images') {
-            steps {
-                sh '''
-            docker images
-                '''
-            }
-        }
-    
-    stage('launch container') {
-            steps {
-                sh '''
-            docker run -i --name alex alex:001
-                '''
-            }
-        }
-    
-
-    
-    
     }
 
+
+
 }
-
-
-
-
-
-
-
-
