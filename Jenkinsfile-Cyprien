@@ -41,6 +41,7 @@ pipeline {
                 '''
             }
 
+        }
 
         stage('Docker push') {
             steps {
@@ -52,5 +53,4 @@ pipeline {
         }
     }
 
-}
 }
