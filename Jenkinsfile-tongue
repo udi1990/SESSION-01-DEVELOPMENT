@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Hello1') {
+            steps {
+                sh '''
+                ls
+                pw
+                mkdir kantin
+                '''
+            }
+        }
+    
+    
+    stage('Hello2') {
+            steps {
+                sh '''
+                uname -r
+                free -h
+
+                '''
+            }
+        }
+    
+    stage('Hello3') {
+            steps {
+                sh '''
+                 ls
+                 pwd
+                '''
+            }
+        }
+    stage('Hello4') {
+            steps {
+                sh '''
+                pwd
+                ls
+                hostnmae
+
+                '''
+            }
+        }
+    }
+
+
+
+}
