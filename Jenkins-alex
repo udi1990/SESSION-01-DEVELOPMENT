@@ -2,54 +2,53 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello1') {
-            steps {
-                sh '''
-                ls
-                pwd
-                free
-                '''
 
-            }
-        }
-    
-    
-    stage('Hello3') {
+        stage('cleaning enviroment') {
             steps {
                 sh '''
-                uname -r
-                uname -a
-                
+               docker rm -f $(docker ps -aq) || true 
+               
                 '''
             }
         }
     
     
     
-    stage('Hello4') {
+    stage('build the image') {
             steps {
                 sh '''
-                mkdir wisdom
-                touch wisdom
+              docker build -t alex:001 . 
                 '''
             }
         }
     
+    stage('checking images') {
+            steps {
+                sh '''
+            docker images
+                '''
+            }
+        }
     
+    stage('launch container') {
+            steps {
+                sh '''
+            docker run -i --name alex alex:001
+                '''
+            }
+        }
     
-    
-    
+
     
     
     }
 
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
