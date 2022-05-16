@@ -26,7 +26,7 @@ pipeline {
     
     
     
-    stage('Hello3') {
+    stage('Hello4') {
             steps {
                 sh '''
                 mkdir wisdom
@@ -53,4 +53,3 @@ pipeline {
 
 
 }
-
