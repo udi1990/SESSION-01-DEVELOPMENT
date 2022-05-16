@@ -1,1 +1,56 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello1') {
+            steps {
+                sh '''
+                ls
+                pwd
+                free
+                '''
+
+            }
+        }
+    
+    
+    stage('Hello3') {
+            steps {
+                sh '''
+                uname -r
+                uname -a
+                
+                '''
+            }
+        }
+    
+    
+    
+    stage('Hello3') {
+            steps {
+                sh '''
+                mkdir wisdom
+                touch wisdom
+                '''
+            }
+        }
+    
+    
+    
+    
+    
+    
+    
+    }
+
+
+
+
+
+
+
+
+
+
+}
 
