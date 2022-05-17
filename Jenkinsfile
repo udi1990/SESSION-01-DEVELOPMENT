@@ -13,7 +13,7 @@ pipeline {
         stage('build image') {
             steps {
                 sh '''
-                #sudo chown root:docker /var/run/docker.sock
+                sudo chown root:docker /var/run/docker.sock
                  sudo docker build -t nigieu:001 .
                 '''
             }
