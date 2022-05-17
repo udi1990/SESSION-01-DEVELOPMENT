@@ -30,7 +30,8 @@ pipeline {
         stage('launch container') {
             steps {
                 sh '''
-                sudo docker run -i --name nigieu nigieu:001
+                sudo docker ps -a
+                #sudo docker run -i --name nigieu nigieu:001
                 '''
             }
         }
