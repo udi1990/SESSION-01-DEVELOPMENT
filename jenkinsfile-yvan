@@ -42,8 +42,7 @@ pipeline {
 			}
 		}
 
-           
-            
+             
 
      stage('Docker push ') {
             steps {
@@ -75,7 +74,6 @@ post {
       deleteDir()
     }
 }
-
 
 
 }
