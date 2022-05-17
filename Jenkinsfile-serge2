@@ -2,8 +2,8 @@ pipeline {
     agent any
 
       environment {
-        USERNAME = ' devopseasylearning2021'
-        PASSWD =  ' DevOps2021@ '
+        USERNAME = 'devopseasylearning2021'
+        PASSWORD =  'DevOps2021@'
       }
 
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
@@ -20,32 +20,35 @@ pipeline {
                   '''
              }     
             }
+
           stage('tag image ') {
             steps {
                 sh '''
-                docker tag serge devopseasylearning2021/serge:001 
+                docker tag serge:001 devopseasylearning2021/serge:001 
                   
                    '''
-
             }
         }  
-
-
-          stage('push image ') {
-            steps {
-                sh '''
-               docker push serge:001 .
-               '''
-            }
-          }
 
           stage('docker login ') {
             steps {
                 sh '''
-               docker login -u devopseasylearning2021 -p DevOps2021@ 
+               docker login -u $USERNAME -p $PASSWORD
                '''
             }
         }
+
+          stage('push image ') {
+            steps {
+                sh '''
+               docker push devopseasylearning2021/serge:001
+               '''
+            }
+          }
+
+
+
     }
 
 }
+
