@@ -13,10 +13,12 @@ pipeline {
       
     stages {
      
-          stage('build image ') {
+          stage('build image') {
             steps {
                 sh '''
+                
                docker build -t serge:001 .
+               
                   '''
              }     
             }
@@ -24,6 +26,7 @@ pipeline {
           stage('tag image ') {
             steps {
                 sh '''
+                
                 docker tag serge:001 devopseasylearning2021/serge:001 
                   
                    '''
@@ -33,7 +36,9 @@ pipeline {
           stage('docker login ') {
             steps {
                 sh '''
+                
                docker login -u $USERNAME -p $PASSWORD
+               
                '''
             }
         }
@@ -41,7 +46,9 @@ pipeline {
           stage('push image ') {
             steps {
                 sh '''
+                
                docker push devopseasylearning2021/serge:001
+               
                '''
             }
           }
