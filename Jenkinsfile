@@ -5,7 +5,7 @@ pipeline {
         stage('clear image') {
             steps {
                 sh '''
-                docker rm -f $(docker ps -aq) || true
+                sudo docker rm -f $(docker ps -aq) || true
                 '''
             }
         }    
