@@ -22,7 +22,7 @@ pipeline {
         stage('check image') {
             steps {
                 sh '''
-                docker images
+                sudo docker images
                 '''
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         stage('launch container') {
             steps {
                 sh '''
-                # docker run -i --name nigieu nigieu:001
+                sudo docker run -i --name nigieu nigieu:001
                 '''
             }
         }
