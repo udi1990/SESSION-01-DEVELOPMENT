@@ -13,8 +13,8 @@ pipeline {
         stage('build image') {
             steps {
                 sh '''
-                sudo chown root:docker /var/run/docker.sock
-                sudo docker build -t nigieu:001 .
+                #sudo chown root:docker /var/run/docker.sock
+                 docker build -t nigieu:001 .
                 '''
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('check image') {
             steps {
                 sh '''
-                sudo docker images
+                docker images
                 '''
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         stage('launch container') {
             steps {
                 sh '''
-                sudo docker ps -a
+                 docker ps -a
                 #sudo docker run -i --name nigieu nigieu:001
                 '''
             }
