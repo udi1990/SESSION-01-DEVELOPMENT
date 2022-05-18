@@ -13,13 +13,6 @@ environment {
 
     stages {
 
-       stage('cleaning environment') {
-            steps {
-                sh '''
-                docker rm -f $(docker ps -aq) || true
-                '''
-            }
-        }
     
         stage('build image') {
             steps {
@@ -41,7 +34,7 @@ environment {
      stage('tag image') {
             steps {
                 sh '''
-                docker tag cedric:001 devopseasylearning2021/cedric_0314:002
+                docker tag cedric:001 devopseasylearning2021/cedric_0314:ced.image.003
                 '''
             }
         }
@@ -62,7 +55,7 @@ environment {
         stage('push my image') {
             steps {
                 sh '''
-                docker push devopseasylearning2021/cedric_0314:ced.image.002
+                docker push devopseasylearning2021/cedric_0314:ced.image.003
                 '''
             }
         }
