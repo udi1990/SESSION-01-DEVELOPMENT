@@ -19,6 +19,7 @@ environment {
                 whoami
                 pwd
                 ls
+                docker --version
                 '''
             }
         }
