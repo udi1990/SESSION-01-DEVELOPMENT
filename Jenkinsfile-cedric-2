@@ -3,7 +3,6 @@ pipeline {
 
     environment {
        USERNAME = 'devopseasylearning2021'
-       PASSWORD = 'DevOps2021@'
     }
 
     options { 
@@ -47,7 +46,9 @@ pipeline {
         stage('docker login') {
             steps {
                 sh '''
-                docker login -u $USERNAME -p $PASSWORD
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: '', usernameVariable: '')]) {
+                // some block
+                }
                 '''
             }
         }
