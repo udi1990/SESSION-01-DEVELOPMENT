@@ -1,17 +1,50 @@
 pipeline {
     agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+     
+     environment {
+        USERNAME = 'devopeasylearning2021'
+        PASSWORD    = 'DevOps2021@'
     }
 
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '',
+      daysToKeepStr: '3',
+       numToKeepStr: '5')),
+        disableConcurrentBuilds() }
 
+    stages {
+        stage('Build images ') {
+            steps {
+                sh '''
+                docker build -t ivo:001 .
+                '''
+            }
+        }
+        stage {
+            steps ('Tag image ') {
+                sh '''
+                docker tag ivo:001 devopseaasylearning2021/ivo:001
+                '''
+            }
+        }
+        
+        stage {
+                steps ('Docker login') {
+                sh '''
+                docker login -$USERNAME -$PASSWORD
+                '''
+            }
+        }
 
+        stage ('Docker push') {
+            steps {
+                sh '''
+                docker push devopseaasylearning2021/ivo:001
+                '''
+            }
 
+        }
 
+    }
 
 }
