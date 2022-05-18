@@ -22,23 +22,31 @@ environment {
                 '''
             }
         }
-        stage('Hello') {
+        stage('build image') {
             steps {
                 sh'''
-                echo $USERNAME
-                echo $PASSWORD
+                docker build -t nigieu:001 .
                 '''
             }
         }
-        stage('Hello1') {
+        stage('tag image') {
             steps {
                 sh'''
+                docker tag nigieu:001 devopseasylearning2021/nigieu:001
                 '''
             }
         }
-        stage('Hello2') {
+        stage('docker login') {
             steps {
                 sh'''
+                docker login -u devopseasylearning2021 -p DevOps2021@
+                '''
+            }
+        }
+        stage('docker push') {
+            steps {
+                sh'''
+                docker push devopseasylearning2021/nigieu:001
                 '''
             }
         }
