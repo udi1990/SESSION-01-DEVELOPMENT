@@ -1,7 +1,13 @@
 pipeline {
     agent any
 
-    options { 
+environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+    
+    
+    
+    options {
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
     disableConcurrentBuilds() }
 
@@ -42,10 +48,11 @@ pipeline {
 
         stage('docker login') {
             steps {
-                sh '''
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: '', usernameVariable: '')]) 
                 
-                '''
+                steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+                
             }
         }
 
