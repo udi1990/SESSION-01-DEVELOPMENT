@@ -2,42 +2,42 @@ pipeline {
     agent any
 
     stages {
-        stage('cedric1') {
+
+        stage('cleaning environment') {
             steps {
                 sh '''
-                echo "I love DevOps"
-                free -h
-                touch cedric vanelle adele
+                docker rm -f $(docker ps -aq) || true
+            
                 '''
             }
         }
     
-        stage('cedric2') {
+        stage('build image') {
+            steps {
+              sh '''
+                docker build -t cedric:001 .
+              '''
+            }
+        }
+
+        stage('checking images') {
             steps {
                 sh '''
-                uname -a
-                mkdir paul-biya
+                docker images
                 '''
             }
         }
-    
-        stage('cedric3') {
+
+        stage('launch container') {
             steps {
                 sh '''
-                ls
-                uname -r
+                docker run -i --name cedric cedric:001
                 '''
             }
         }
-    
-        stage('cedric4') {
-            steps {
-                sh '''
-                ls
-                pwd
-                '''
-            }
-        }
-    
+
     }
+
+
+
 }
