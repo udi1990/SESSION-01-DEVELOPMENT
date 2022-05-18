@@ -2,20 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello1') {
+        stage('cleaning environment') {
             steps {
                 sh '''
-                ls
-                pwd
+                docker rm -f $(docker ps -aq)
                 '''
             }
         }
 
 
-    stage('Hello2') {
+    stage('build the image') {
             steps {
                 sh '''
-                free -h
+                docker build -t john:001
                 '''
             }
         }
@@ -23,14 +22,23 @@ pipeline {
 
 
 
-    stage('Hello3') {
+    stage('checking images') {
             steps {
                 sh '''
-                uname -r
+                docker images
                 '''
             }
         }
 
+
+
+    stage('launch container') {
+            steps {
+                sh '''
+                docker run -i --name john:001
+                '''
+            }
+        }
 
 
 
