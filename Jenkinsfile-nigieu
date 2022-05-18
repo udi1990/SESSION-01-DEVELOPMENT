@@ -18,8 +18,9 @@ environment {
                 curl ifconfig.io
                 whoami
                 pwd
-                ls
+                
                 sudo -i
+                id
                 '''
             }
         }
