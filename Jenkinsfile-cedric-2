@@ -1,43 +1,49 @@
 pipeline {
     agent any
 
-    stages {
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+    artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')),
+    disableConcurrentBuilds()])
 
-        stage('cleaning environment') {
+
+    stages {
+        stage('cedric1') {
             steps {
                 sh '''
-                docker rm -f $(docker ps -aq) || true
-            
+                echo "I love DevOps"
+                free -h
+                touch cedric vanelle adele
                 '''
             }
         }
     
-        stage('build image') {
-            steps {
-              sh '''
-                docker build -t cedric:001 .
-              '''
-            }
-        }
-
-        stage('checking images') {
+        stage('cedric2') {
             steps {
                 sh '''
-                docker images
+                uname -a
+                mkdir paul-biya
                 '''
             }
         }
-
-        stage('launch container') {
+    
+        stage('cedric3') {
             steps {
                 sh '''
-                docker run -i --name cedric cedric:001
+                ls
+                uname -r
                 '''
             }
         }
-
+    
+        stage('cedric4') {
+            steps {
+                sh '''
+                ls
+                pwd
+                '''
+            }
+        }
+    
     }
-
-
-
 }
+
