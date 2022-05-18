@@ -15,7 +15,10 @@ environment {
         stage('Me') {
             steps {
                 sh'''
-
+                id
+                whoami
+                pwd
+                ls
                 '''
             }
         }
