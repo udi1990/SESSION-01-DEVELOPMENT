@@ -1,7 +1,17 @@
 pipeline {
     agent any
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds()])
+#properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds()])
     stages {
+        stage('Me') {
+            steps {
+                sh'''
+                curl ifconfig.io
+                whoami
+                pwd
+                ls
+                '''
+            }
+        }
         stage('Hello') {
             steps {
                 echo 'Hello World'
