@@ -7,7 +7,21 @@ pipeline {
 
     stages {
 
-       
+       stage('cleaning environment') {
+            steps {
+                sh '''
+                docker rm -f $(docker ps -aq) || true
+                '''
+            }
+        }
+    
+        stage('build image') {
+            steps {
+              sh '''
+                docker build -t cedric:001 .
+              '''
+            }
+        }
 
         stage('checking images') {
             steps {
