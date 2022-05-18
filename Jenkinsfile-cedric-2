@@ -44,9 +44,7 @@ pipeline {
             steps {
                 sh '''
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: '', usernameVariable: '')]) 
-                {
-                // some block
-                }
+                
                 '''
             }
         }
