@@ -7,7 +7,7 @@ options {
     disableConcurrentBuilds() 
 }
 environment { 
-    USERNAME = 'devopseasylearning2021', 
+    USERNAME = 'devopseasylearning2021'
     PASSWORD = 'DevOps2021@' 
 }
 
