@@ -3,6 +3,7 @@ pipeline {
 options { buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
  artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')) 
   disableConcurrentBuilds() }
+environment { 'USERNAME = \'devopseasylearning2021\'', 'PASSWORD = \'DevOps2021@\'' }
     stages {
         stage('Me') {
             steps {
@@ -16,10 +17,24 @@ options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
         }
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                sh'''
+                echo $USERNAME
+                echo $PASSWORD
+                '''
+            }
+        }
+        stage('Hello1') {
+            steps {
+                sh'''
+                '''
+            }
+        }
+        stage('Hello2') {
+            steps {
+                sh'''
+                '''
             }
         }
     }
 }
-
 
