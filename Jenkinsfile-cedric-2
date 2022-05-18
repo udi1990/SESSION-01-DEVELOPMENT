@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-       USERNAME = 'devopseasylearning2021'
-    }
-
     options { 
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
     disableConcurrentBuilds() }
