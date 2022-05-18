@@ -15,12 +15,7 @@ environment {
         stage('Me') {
             steps {
                 sh'''
-                curl ifconfig.io
-                whoami
-                pwd
-                
-                sudo -i
-                id
+
                 '''
             }
         }
