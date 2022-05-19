@@ -16,7 +16,7 @@ pipeline {
           stage('build image ') {
             steps {
                 sh '''
-               docker build -t my-inbound-agent .
+               docker build -t my-serge:01 .
                   '''
              }     
             }
@@ -24,7 +24,7 @@ pipeline {
           stage('tag image ') {
             steps {
                 sh '''
-                docker tag my-inbound-agent devopseasylearning2021/my-inbound-agent
+                docker tag my-serge:01 devopseasylearning2021/my-serge:01
                   
                    '''
             }
@@ -41,7 +41,7 @@ pipeline {
           stage('push image ') {
             steps {
                 sh '''
-               docker push devopseasylearning2021/my-inbound-agent
+               docker push devopseasylearning2021/my-serge:01
                '''
             }
           }
