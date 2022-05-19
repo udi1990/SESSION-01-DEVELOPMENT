@@ -1,47 +1,49 @@
 pipeline {
     agent any
+
+      environment {
+        USERNAME = 'devopseasylearning2021'
+        PASSWORD  =  'DevOps2021@'
+    }
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '', 
     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
     disableConcurrentBuilds() }
 
     stages {
-        stage('hello') {
+        stage('Build images') {
             steps {
                 sh '''
-                pwd
+                docker build -t johnathan:001 .
                 '''
             }
         }
 
 
-    stage('hello2') {
+    stage('Tag image') {
             steps {
                 sh '''
-                ls
-                touch ducobu
-                mkdir chuy
-                '''
-            }
-        }
-
-
-
-
-    stage('hello3') {
-            steps {
-                sh '''
-                uname -r
+                docker tag johnathan:001 devopseasylearning2021/ducobu:001
                 '''
             }
         }
 
 
 
-    stage('launch container') {
+
+    stage('Docker login') {
             steps {
                 sh '''
-                ls -l
-                nproc
+                docker login -u $USERNAME -p $PASSWORD
+                '''
+            }
+        }
+
+
+
+    stage('Docker push') {
+            steps {
+                sh '''
+                docker push devopseasylearning2021/ducobu:001
                 '''
             }
         }
