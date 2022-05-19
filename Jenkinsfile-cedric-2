@@ -12,7 +12,7 @@ environment {
     disableConcurrentBuilds() }
 
    
-
+ stages {
         stage('checking images') {
             steps {
                 sh '''
