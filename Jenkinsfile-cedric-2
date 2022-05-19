@@ -13,6 +13,16 @@ environment {
 
    
  stages {
+ 
+ stage('build image') {
+            steps {
+              sh '''
+                docker build -t cedric:001 .
+              '''
+            }
+        }
+	
+	
         stage('checking images') {
             steps {
                 sh '''
