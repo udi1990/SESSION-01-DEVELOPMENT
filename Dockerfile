@@ -1,12 +1,8 @@
-FROM node:alpine
+FROM ubuntu
 
-ADD package.json /app/
+RUN apt update
 
-WORKDIR /app
-
-RUN npm install
-
-ADD hello.js /app/
+RUN touch serge
 
 CMD npm start
 
