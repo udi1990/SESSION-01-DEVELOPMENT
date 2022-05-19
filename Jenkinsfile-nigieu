@@ -10,14 +10,14 @@ pipeline {
      stage('Build images') {
             steps {
                 sh '''
-                docker build -t eric:001 .
+                docker build -t nigieu:001 .
                 '''
             }
         }
      stage('Tag image ') {
             steps {
                sh '''
-              docker tag eric:001  devopseasylearning2021/eric:001
+              docker tag nigieu:001  devopseasylearning2021/nigieu:001
                 '''
             }
         }
@@ -29,7 +29,7 @@ pipeline {
      stage('Docker push ') {
             steps {
                sh '''
-              docker push devopseasylearning2021/eric:001
+              docker push devopseasylearning2021/nigieu:001
                 '''
             }
         }
