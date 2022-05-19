@@ -1,20 +1,23 @@
 pipeline {
     agent any
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds()])
 
     stages {
-        stage('cleaning environment') {
+        stage('hello') {
             steps {
                 sh '''
-                docker rm -f $(docker ps -aq) || true
+                pwd
                 '''
             }
         }
 
 
-    stage('build the image') {
+    stage('hello2') {
             steps {
                 sh '''
-                docker build -t john:001
+                ls
+                touch ducobu
+                mkdir chuy
                 '''
             }
         }
@@ -22,10 +25,10 @@ pipeline {
 
 
 
-    stage('checking images') {
+    stage('hello3') {
             steps {
                 sh '''
-                docker images
+                uname -r
                 '''
             }
         }
@@ -35,7 +38,8 @@ pipeline {
     stage('launch container') {
             steps {
                 sh '''
-                docker run -i --name john:001
+                ls -l
+                nproc
                 '''
             }
         }
