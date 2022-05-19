@@ -35,7 +35,7 @@ environment {
      stage('tag image') {
             steps {
                 sh '''
-                docker tag cedric:001 devopseasylearning2021/cedric_0314:ced.image.005
+                docker tag cedric:001 devopseasylearning2021/cedric_0314:ced.image.006
                 '''
             }
         }
@@ -56,7 +56,7 @@ environment {
         stage('push my image') {
             steps {
                 sh '''
-                docker push devopseasylearning2021/cedric_0314:ced.image.005
+                docker push devopseasylearning2021/cedric_0314:ced.image.006
                 '''
             }
         }
