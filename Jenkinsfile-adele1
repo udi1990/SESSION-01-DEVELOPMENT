@@ -6,7 +6,7 @@ pipeline {
         stage('Hello') {
             steps {
                 sh '''
-                echo 'Hello World'
+               
                 ls
                 pwd
                 '''
@@ -15,8 +15,8 @@ pipeline {
 
         stage('Hello1') {
             steps {
-                sh ''''
-                echo 'Hello World2'
+                sh '''
+                
                 uname -a
                 '''
             }
@@ -24,8 +24,8 @@ pipeline {
 
         stage('Hello2') {
             steps {
-                sh ''''
-                echo 'Hello World3'
+                sh '''
+               
                 ls -l
                 '''
             }
