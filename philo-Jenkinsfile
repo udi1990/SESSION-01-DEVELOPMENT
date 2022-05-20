@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello1') {
+            steps {
+                sh '''
+                free -h
+                '''
+            }
+        }
+
+    stage('Hello2') {
+            steps {
+                sh '''
+                ls
+                pwd
+                '''
+            }
+        }
+
+    
+    
+    stage('Hello3') {
+            steps {
+               sh '''
+               uname -r
+               '''
+            }
+        }
+    
+    
+    
+    
+    stage('Hello4') {
+            steps {
+                sh '''
+                touch prince amalia
+                '''
+            }
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+
+
+}
+
