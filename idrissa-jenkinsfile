@@ -2,16 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello1') {
+        stage('cleaning environment') {
             steps {
-                echo 'Hello World'
+               sh '''
+               docker rm -f $(docker ps -aq)
+               '''
             }
         }
-        stage('Hello2') {
+        stage('build the image') {
             steps {
-                echo 'Hello World'
+                sh '''
+                docker build -t idrissa:001 .
+                '''
             }
+        }
+        stage('launching the container') {
+            steps {
+                sh '''
+                docker run -d --name idrissa-test idrissa:001
+                '''
+            }   
         }
     }
-}
+} 
 
