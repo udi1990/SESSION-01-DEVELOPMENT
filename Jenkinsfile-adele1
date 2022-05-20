@@ -1,12 +1,15 @@
 pipeline {
     agent any
+    options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
+     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
+      disableConcurrentBuilds() }
 
     stages {
 
         stage('Hello') {
             steps {
                 sh '''
-               
+                echo 'Hello World'
                 ls
                 pwd
                 '''
@@ -15,7 +18,7 @@ pipeline {
 
         stage('Hello1') {
             steps {
-                sh '''
+                sh ''''
                 
                 uname -a
                 '''
@@ -24,7 +27,7 @@ pipeline {
 
         stage('Hello2') {
             steps {
-                sh '''
+                sh ''''
                
                 ls -l
                 '''
@@ -33,12 +36,7 @@ pipeline {
 
 
 
-
-
-
     }
-
-
 
 
 
