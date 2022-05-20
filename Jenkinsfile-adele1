@@ -18,7 +18,7 @@ pipeline {
 
         stage('Hello1') {
             steps {
-                sh ''''
+                sh '''
                 
                 uname -a
                 '''
@@ -27,7 +27,7 @@ pipeline {
 
         stage('Hello2') {
             steps {
-                sh ''''
+                sh '''
                
                 ls -l
                 '''
