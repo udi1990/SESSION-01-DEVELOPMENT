@@ -7,10 +7,10 @@ pipeline {
 
 
 
-    environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-	}
-
+   environment {
+        USERNAME = 'devopseasylearning2021'
+        PASSWORD =  'DevOps2021@'
+      }
 
     stages {
         
