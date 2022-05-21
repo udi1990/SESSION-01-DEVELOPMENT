@@ -22,8 +22,9 @@ pipeline {
                 sh '''
                 pwd
                 uname -r
-                touch papou
-                mkdir akwa
+                free -m
+                date
+               
                 '''
             }
         }
