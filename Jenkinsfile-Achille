@@ -14,7 +14,7 @@ pipeline {
         stage('Build images') {
             steps {
                 sh '''
-                docker build -t achille1:002
+                docker build -t achille1:002 .
 
                 '''
             }
