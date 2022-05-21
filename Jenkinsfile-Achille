@@ -3,7 +3,7 @@
 
 pipeline {
     agent any
-    
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds()])
     stages {
         stage('Hello') {
             steps {
@@ -13,7 +13,12 @@ pipeline {
     
     stage('Hello1') {
             steps {
-                echo 'Hello World'
+                sh '''
+                pwd
+                uname -r
+                touch christ
+                mkdir bonaberi
+                '''
             }
         }
     
