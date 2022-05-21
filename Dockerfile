@@ -1,9 +1,6 @@
 FROM jenkins/inbound-agent
 USER root
-RUN apt-get update; \
-apt-get install -y wget; \
-wget https://download.docker.com/linux/static/stable/x86_64/docker-20.10.9.tgz; \
-tar zxvf docker-20.10.9.tgz; \
-cp -f docker/docker /usr/local/bin; \
-rm -fr docker-20.10.0.tgz docker; \
-apt-get purge -y wget
+RUN curl -fsSLO https://get.docker/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
+  && tar xzvf docker-17.04.0-ce.tgz \
+  && mv docker/docker /usr/local/bin \
+  && rm -r docker docker-17.04.0-ce.tgz
