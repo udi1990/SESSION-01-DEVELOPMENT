@@ -23,19 +23,19 @@ pipeline {
                docker build -t serge:001 .
                   '''
              }     
-            }
+            
 
           stage('tag image ') {
 
             docker { image 'maven:3.8.1-adoptopenjdk-11' }
-          }  
+          }
             steps {
                 sh '''
                 docker tag serge:001 devopseasylearning2021/serge:001 
                   
                    '''
             }
-        }  
+         
 
           stage('docker login ') {
             steps {
