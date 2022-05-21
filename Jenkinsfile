@@ -16,18 +16,20 @@ pipeline {
           stage('build image ') {
 
 
-              docker { image 'maven:3.8.1-adoptopenjdk-11' }
+            agent {
+        docker { image 'maven:3.8.1-adoptopenjdk-11' }
           }
             steps {
                 sh '''
                docker build -t serge:001 .
                   '''
              }     
-            
+          }
 
           stage('tag image ') {
 
-            docker { image 'maven:3.8.1-adoptopenjdk-11' }
+            agent {
+        docker { image 'maven:3.8.1-adoptopenjdk-11' }
           }
             steps {
                 sh '''
@@ -35,9 +37,13 @@ pipeline {
                   
                    '''
             }
-         
+          }
 
           stage('docker login ') {
+
+                agent {
+        docker { image 'maven:3.8.1-adoptopenjdk-11' }
+          }
             steps {
                 sh '''
                docker login -u $USERNAME -p $PASSWORD
@@ -46,6 +52,10 @@ pipeline {
         }
 
           stage('push image ') {
+
+                agent {
+        docker { image 'maven:3.8.1-adoptopenjdk-11' }
+          }
             steps {
                 sh '''
                docker push devopseasylearning2021/serge:001
