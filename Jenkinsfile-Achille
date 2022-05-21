@@ -5,39 +5,45 @@ pipeline {
     agent any
     environment {
          USERNAME= 'devopseasylearning2021'
-        
+         PASSWORD= 'Devops2021@'
      }
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-    
-    stage('Hello1') {
+        stage('Build images') {
             steps {
                 sh '''
-                pwd
-                uname -r
-                free -m
-                date
-               
+                docker build -t achille1:002
+
                 '''
             }
         }
     
-    stage('Hello2') {
+    stage('Tag image') {
             steps {
-                echo 'Hello World'
+                sh '''
+                docker tag achille1:002 devopseasylearning2021/achille1:002
+
+                '''
             }
         }
     
-    stage('Hello3') {
+    stage('Docker Login') {
             steps {
-                echo 'Hello World'
+               sh '''
+                docker login -u $USERNAME -p $PASSWORD
+
+                '''
+            }
+        }
+    
+    stage('Push image') {
+            steps {
+                sh '''
+                docker push devopseasylearning2021/achille1:002
+
+                '''
             }
         }
     
