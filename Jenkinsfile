@@ -14,17 +14,24 @@ pipeline {
     stages {
      
           stage('build image ') {
+
+
+              docker { image 'maven:3.8.1-adoptopenjdk-11' }
+          }
             steps {
                 sh '''
-               docker build -t my-serge:01 .
+               docker build -t serge:001 .
                   '''
              }     
             }
 
           stage('tag image ') {
+
+            docker { image 'maven:3.8.1-adoptopenjdk-11' }
+          }  
             steps {
                 sh '''
-                docker tag my-serge:01 devopseasylearning2021/my-serge:01
+                docker tag serge:001 devopseasylearning2021/serge:001 
                   
                    '''
             }
@@ -41,7 +48,7 @@ pipeline {
           stage('push image ') {
             steps {
                 sh '''
-               docker push devopseasylearning2021/my-serge:01
+               docker push devopseasylearning2021/serge:001
                '''
             }
           }
