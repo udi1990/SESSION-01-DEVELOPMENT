@@ -4,14 +4,35 @@ pipeline {
 
     stages {
 
-        
+
         stage('Hello') {
             steps {
-                echo 'Hello World'
+                sh'''
+                pwd
+                ls
+                mkdir paulo
+                touch nwanike
+
+                '''
             }
         }
-        
-        
+      stage('Hello1') {
+            steps {
+                sh'''
+               cat /etc/passwd
+
+                '''
+            }
+        }  
+        stage('Hello2') {
+            steps {
+                 sh'''
+                cat /etc/*release
+                nproc
+                ls -l
+                '''
+            }
+        }
         
         
         
@@ -27,3 +48,6 @@ pipeline {
 
 
 }
+
+
+
