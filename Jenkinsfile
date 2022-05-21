@@ -1,11 +1,9 @@
 pipeline {
     agent any
 
-      environment {
-        USERNAME = 'devopseasylearning2021'
-        PASSWORD =  'DevOps2021@'
-      }
-
+       environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
     options { buildDiscarder(logRotator(artifactDaysToKeepStr: '',
      artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
       disableConcurrentBuilds() }
