@@ -22,8 +22,8 @@ pipeline {
                 sh '''
                 pwd
                 uname -r
-                touch christ
-                mkdir bonaberi
+                touch papou
+                mkdir akwa
                 '''
             }
         }
