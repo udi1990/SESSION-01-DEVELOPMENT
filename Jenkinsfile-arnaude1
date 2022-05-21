@@ -1,0 +1,71 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+                sh '''
+                ls 
+                pwd
+                uname -a
+                '''
+            }
+        }
+        stage('Hello1') {
+            steps {
+                echo 'Hello World'
+                sh '''
+                uname -r
+                cat > student
+                '''
+            }
+        }
+        stage('Hello2') {
+            steps {
+                echo 'Hello World'
+                sh '''
+                touch arnaude
+                mkdir bonjour
+                '''
+            }
+        }
+        stage('Hello3') {
+            steps {
+                echo 'Hello World'
+                sh '''
+                mv arnaude bonjour
+                '''
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
