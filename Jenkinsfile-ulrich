@@ -2,11 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('cleaning environment') {
             steps {
                 sh '''
-                ls
-                pwd
+                docker rm -f $(docker ps -aq)
                 '''
             }
         }
@@ -14,20 +13,20 @@ pipeline {
     
     
     
-    stage('Hello1') {
+    stage('build the image') {
             steps {
                 sh '''
-                free -h
+                docker build -t ulrich:001 .
                 '''
             }
         }
     
     
     
-    stage('Hello2') {
+    stage('checking images') {
             steps {
                 sh '''
-                uname-r
+                docker images
                 '''
             }
         }
@@ -35,10 +34,10 @@ pipeline {
 
 
 
-    stage('Hello3') {
+    stage('launch container') {
             steps {
                 sh '''
-                touch ulrich carine noah eden
+                docker run -i --name ulrich ulrich:001
                 '''
             }
         }
