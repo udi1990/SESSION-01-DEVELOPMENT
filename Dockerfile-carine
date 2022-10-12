@@ -1,0 +1,5 @@
+FROM ubuntu
+RUN apt update
+RUN touch ulrich1
+
+docker built -t ulrich1 .
