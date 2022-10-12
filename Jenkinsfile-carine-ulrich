@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('cleaning environment') {
+            steps {
+                sh '''
+                docker rm -f $(docker ps -aq) || true
+                '''
+            }
+        }
+    
+    
+    
+    
+        stage('build the image') {
+            steps {
+                sh '''
+                docker build -t ulrich:001 .
+                '''
+            }
+        }
+    
+    
+    
+        stage('checking images') {
+            steps {
+                sh '''
+                docker images
+                '''
+            }
+        }
+    
