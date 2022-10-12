@@ -2,48 +2,24 @@ pipeline {
     agent any
     options ( buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds(), gitLabConnection(gitLabConnection: 'https://github.com/udi1990/terrraform-eks', jobCredentialId: ''))
     stages {
-        stage('cleaning environment') {
+        
+    stage('Hello2') {
             steps {
                 sh '''
-                docker rm -f $(docker ps -aq) || true
-                '''
-            }
-        }
-    
-    
-    
-    
-        stage('build the image') {
-            steps {
-                sh '''
-                docker build -t ulrich:001 .
-                '''
-            }
-        }
-    
-    
-    
-        stage('checking images') {
-            steps {
-                sh '''
-                docker images
-                '''
-            }
-        }
-    
+                uname -r
 
-
-
-        stage('launch container') {
-            steps {
-                sh '''
-                docker run -i --name ulrich ulrich:001
                 '''
             }
         }
-    
-    
+   
+   
+    stage('Hello3') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+   
+   
+   
     }
-
-
 }
