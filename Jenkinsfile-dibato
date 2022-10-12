@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    options ([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds(), gitLabConnection(gitLabConnection: 'https://github.com/udi1990/terrraform-eks', jobCredentialId: '')])
+    options ( buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5')), disableConcurrentBuilds(), gitLabConnection(gitLabConnection: 'https://github.com/udi1990/terrraform-eks', jobCredentialId: ''))
     stages {
         stage('cleaning environment') {
             steps {
